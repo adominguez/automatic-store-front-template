@@ -1,0 +1,78 @@
+module.exports = {
+  siteMetadata: {
+    siteLanguage: 'es',
+    siteName: '3DMakerNow',
+    siteDescription: 'Super descripción del sitio',
+    siteDomain: '3dmakernow.com',
+    singularPrincipalKeyword: 'Impresora 3D',
+    pluralPrincipalKeyword: 'Impresoras 3D',
+    genrePrincipalKeyword: 'f',
+    siteFavicon: 'https://firebasestorage.googleapis.com/v0/b/automatic-web-dashboard-back.appspot.com/o/images%2Fdefault-icon.png?alt=media&token=b8ef0c2f-53c6-4aa1-8aad-5bd754639a18',
+    bodyBackgroundColor: '#fafafa',
+    bodyBackgroundColorLight: '#fafafa',
+    bodyBackgroundColorDark: '#fafafa',
+    primaryColor: '#0097a7',
+    primaryColorLight: '#0097a7',
+    primaryColorDark: '#0097a7',
+    secondaryColor: '#424242',
+    secondaryColorLight: '#424242',
+    secondaryColorDark: '#424242',
+    textColor: '#616161',
+    textColorLight: '#616161',
+    textColorDark: '#616161',
+    sidebarColor: '#eeeeee',
+    useMenu: true,
+    useHeaderWhite: false,
+    useMenuWidth: true,
+    useFooterWidth: false,
+    useSidebar: true,
+    sidebarWidthValue: '20',
+    useAmazonSearch: true,
+    useLogo: false,
+    useTransparentContentBackground: false,
+    amazonWidthValue: '80',
+    templateWidthValue: '70',
+    siteLogo: '',
+    logoPositionValue: '0',
+    headerSizeValue: 1,
+    h1SizeValue: 1,
+    h2SizeValue: 1,
+    h3SizeValue: 1,
+    textSizeValue: 1,
+  },
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+  ],
+}
