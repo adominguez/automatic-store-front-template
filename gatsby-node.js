@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 const opts = {
-  userId: `JBEqCPjH5HQUBNcmUAjDr8wDW8L2`,
-  siteId: `5p27a67dk1`,
+  userId: `userToReplace`,
+  siteId: `siteToReplace`,
 }
 
 const get = ({query, url}) => axios.get(`http://localhost:3127/${url}/${opts.userId}/${opts.siteId}${query ? '?' + query : ''}`);
