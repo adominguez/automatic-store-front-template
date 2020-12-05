@@ -9,7 +9,7 @@ const SearchInput = () => {
 
   const filterByKeyword = (event) => {
     const { currentTarget: {value}, keyCode } = event;
-    const filteredResults = itemsToSearch.filter(item => item.name.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()));
+    const filteredResults = itemsToSearch.filter(item => item.name.toLowerCase().includes(value.toLowerCase()));
     setKeyword(value);
     setFilteredResults(filteredResults);
     if(keyCode === 40 && filteredResults.length && keyword.length) {
