@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import { widthValue, logoPosition } from "../utils/utils.js";
 
-const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, color, templateWidthValue }) => {
+const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, templateWidthValue }) => {
 
   return (
-    <header 
-      className={`bg-${color}-400`}
+    <header
+      className={`bg-primary-500`}
     >
       <div className={`md:justify-${logoPosition[logoPositionValue]} justify-center flex p-4 px-${widthValue[templateWidthValue]} pb-4 shadow-lg`}>
           <Link
@@ -15,7 +15,7 @@ const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, color, templateW
             className={`leading-none text-2xl px-3`}
           >
             
-            <span className={`sm:block sm:text-center no-underline text-${useHeaderWhite ? color : 'white'} hover:text-${useHeaderWhite ? color : 'grey'}-800`}>
+            <span className={`sm:block sm:text-center no-underline ${useHeaderWhite ? 'text-primary-500' : 'text-white'} hover:${useHeaderWhite ? 'text-primary-700' : 'text-primary-900'}`}>
               {siteTitle}
             </span>
           </Link>
@@ -28,7 +28,6 @@ Header.propTypes = {
   siteTitle: PropTypes.string,
   logoPositionValue: PropTypes.string,
   useHeaderWhite: PropTypes.bool,
-  color: PropTypes.string,
   templateWidthValue: PropTypes.string,
   device: PropTypes.string
 }
@@ -37,7 +36,6 @@ Header.defaultProps = {
   siteTitle: `Default Title`,
   logoPositionValue: '50',
   useHeaderWhite: false,
-  color: '#0097a7',
   templateWidthValue: '80',
 }
 
