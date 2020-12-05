@@ -4,7 +4,13 @@ import Parser from 'html-react-parser';
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import AmazonSearch from "../components/amazon-search";
+import ProductDetail from "../components/product-detail.js"
+import ProductDetailInfo from "../components/product-detail-info.js"
+import HeadingRowWithText from '../components/heading-row-with-text';
+import HeadingColWithText from '../components/heading-col-with-text';
+import HeadingRowWithLinks from '../components/heading-row-with-links';
 import {getDevice} from "../utils/utils";
+import '../css/index.css';
 
 export default ({ pageContext: { page = {}, colors, design, categories, products, tag }, pageContext }) => {
   const { amazonWidthValue, useAmazonSearch } = design;
@@ -80,7 +86,7 @@ export default ({ pageContext: { page = {}, colors, design, categories, products
   return (
     <Layout>
       <SEO title={page.title} description={page.description} />
-      <h1 className="page-title">{page.name.charAt(0).toUpperCase() + page.name.slice(1)}</h1>
+      {/* <h1 className="page-title">{page.name.charAt(0).toUpperCase() + page.name.slice(1)}</h1> */}
       {useAmazonSearch ? <AmazonSearch
         min={getMinProductsPrice()}
         max={getMaxProductsPrice()}
@@ -89,6 +95,11 @@ export default ({ pageContext: { page = {}, colors, design, categories, products
         tagAffiliate={tag}
         device={device} secondaryColor={secondaryColor} primaryColor={primaryColor} width={amazonWidthValue} keyword={page.name} /> : null}
       <div className="page-content">
+        <HeadingRowWithLinks />
+        <HeadingRowWithText />
+        <HeadingColWithText />
+        <ProductDetailInfo />
+        <ProductDetail />
         <div>
           { firstContent && firstContent.content && 
             firstContent && firstContent.title && Parser(firstContent.title)
@@ -138,4 +149,3 @@ export default ({ pageContext: { page = {}, colors, design, categories, products
     </Layout>
   )
 };
-

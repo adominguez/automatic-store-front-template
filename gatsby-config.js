@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {},
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

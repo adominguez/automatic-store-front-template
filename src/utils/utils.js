@@ -30,3 +30,16 @@ export const getDevice = () => {
 export const isMobileOrTabletDevice = (device) => {
     return device === typesOfDevices.tablet.name || device === typesOfDevices.mobile.name
 }
+
+export const widthValue = {
+    70: 60,
+    80: 40,
+    90: 20,
+    100: 0, 
+}
+
+export const logoPosition = {
+    0: 'start',
+    50: 'center',
+    100: 'end'
+}

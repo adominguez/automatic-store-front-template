@@ -1,47 +1,31 @@
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
-import { isMobileOrTabletDevice, typesOfDevices } from '../utils/utils';
+import { widthValue, logoPosition } from "../utils/utils.js";
 
-const whiteColor = '#fff';
+const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, color, templateWidthValue }) => {
 
-const logoPosition = {
-  0: 'flex-start',
-  50: 'center',
-  100: 'flex-end'
+  return (
+    <header 
+      className={`bg-${color}-400`}
+    >
+      <div className={`md:justify-${logoPosition[logoPositionValue]} justify-center flex p-4 px-${widthValue[templateWidthValue]} pb-4 shadow-lg`}>
+          <Link
+            to="/"
+            className={`leading-none text-2xl px-3`}
+          >
+            
+            <span className={`sm:block sm:text-center no-underline text-${useHeaderWhite ? color : 'white'} hover:text-${useHeaderWhite ? color : 'grey'}-800`}>
+              {siteTitle}
+            </span>
+          </Link>
+      </div>
+    </header>
+  )
 }
 
-const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, color, templateWidthValue, device }) => {
-  return (
-  <>
-  <header
-    className="header"
-    style={{
-      backgroundColor: useHeaderWhite ? whiteColor : color,
-    }}
-  >
-    <div className="header-container-logo" style={{
-      width: isMobileOrTabletDevice(device) ? `${100}%` : `${templateWidthValue}%`,
-      justifyContent: logoPosition[logoPositionValue]
-    }}>
-        <Link
-          to="/"
-          style={{
-            color: useHeaderWhite ? color : whiteColor,
-            textDecoration: `none`,
-          }}
-        >
-        <span>
-          {siteTitle}
-        </span>
-      </Link>
-    </div>
-  </header>
-  </>
-)}
-
 Header.propTypes = {
-  siteTitle: PropTypes.string, 
+  siteTitle: PropTypes.string,
   logoPositionValue: PropTypes.string,
   useHeaderWhite: PropTypes.bool,
   color: PropTypes.string,
@@ -55,7 +39,6 @@ Header.defaultProps = {
   useHeaderWhite: false,
   color: '#0097a7',
   templateWidthValue: '80',
-  device: typesOfDevices.display.name
 }
 
 export default Header

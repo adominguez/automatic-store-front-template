@@ -1,18 +1,13 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React, { useLayoutEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
 import Nav from "./nav";
+import SearchInput from "./search-input.js"
 import "./layout.css";
 import { getDevice, isMobileOrTabletDevice } from '../utils/utils';
+import { widthValue } from "../utils/utils.js";
 
 
 const Layout = ({ children }) => {
@@ -69,20 +64,16 @@ const Layout = ({ children }) => {
   const useFooterWidth = data.site.siteMetadata?.useFooterWidth;
 
   return (
-    <div className="container" style={{
-      backgroundColor: bodyBackgroundColor
-    }}>
+    <div className={`flex flex-col h-screen bg-${bodyBackgroundColor}`}>
       <Header logoPositionValue={logoPositionValue} device={device} templateWidthValue={templateWidthValue} useHeaderWhite={useHeaderWhite} color={primaryColor} siteTitle={siteName} />
       {
         useMenu ? <Nav device={device} color={secondaryColor} templateWidthValue={templateWidthValue} useMenuWidth={useMenuWidth} /> : null
       }
-      <main className="main" style={{
-        width: isMobileOrTabletDevice(device) ? `100%` : `${templateWidthValue}%`
-      }}>
-        <section className="section" style={{
-          backgroundColor: useTransparentContentBackground ? 'transparent' : '#fff',
-          width: isMobileOrTabletDevice(device) ? '100%' : useSidebar ? `${templateWidthValue - sidebarWidthValue}%` : `${templateWidthValue}%`
-        }}>
+      <main className={`overflow-y-auto`}>
+        <div className={`md:px-${widthValue[templateWidthValue]} md:py-4 flex`}>
+          <SearchInput />
+        </div>
+        <section className={`flex justify-center flex-col md:px-${widthValue[templateWidthValue]}`}>
           {children}
         </section>
         {
