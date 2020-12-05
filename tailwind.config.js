@@ -12,7 +12,9 @@ module.exports = {
         primary: {},
         secondary: {},
         backgroundSite: {},
-        textColor: {}
+        textColor: {},
+        sidebarColor: {},
+        footerColor: {}
       }
     },
   },
