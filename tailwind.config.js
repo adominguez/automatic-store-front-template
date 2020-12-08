@@ -15,13 +15,21 @@ module.exports = {
         textColor: {},
         sidebarColor: {},
         footerColor: {}
-      }
+      },
+      width: {}
     },
+    truncate: {
+      lines: {
+          3: '3',
+          5: '5',
+          8: '8',
+      }
+    }
   },
   variants: {
     extend: {},
   },
   plugins: [
-
-  ],
+    require('tailwindcss-truncate-multiline')(['responsive', 'hover']), 
+ ],
 }

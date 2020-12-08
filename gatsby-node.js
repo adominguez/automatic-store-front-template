@@ -28,7 +28,7 @@ exports.createPages = async ({
   const urlSite = 'site';
   const urlTagAmazon = 'amazon-tag'
   const urlTagAnalytics = 'analytics-tag'
-  const {colors, design, categories, keywords, amazon, analytics} = await getDataByEntity({url: urlSite});
+  const {colors, design, categories, keywords, amazon, analytics, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword} = await getDataByEntity({url: urlSite});
   const { tag } = await getThirdServicesByEntity({url: urlTagAmazon, param: amazon });
   const { analyticId } = await getThirdServicesByEntity({url: urlTagAnalytics, param: analytics });
   const allPages = await categories.concat(keywords);
@@ -52,6 +52,9 @@ exports.createPages = async ({
         categories,
         products,
         tag,
+        pluralPrincipalKeyword,
+        singularPrincipalKeyword,
+        genrePrincipalKeyword,
         analyticId
       }
     });
