@@ -14,7 +14,7 @@ const CategoriesList = ({categories, pluralPrincipalKeyword, singularPrincipalKe
 					<picture>
 						<source media="(max-width: 480px)" srcSet={`${category.image.src}._AC_SY400_.${category.image.extension}`}></source>
 						<source media="(max-width: 768px)" srcSet={`${category.image.src}._AC_SY300_.${category.image.extension}`}></source>
-						<img className="flex-shrink-0 object-cover object-center w-full mb-4 rounded-lg" src={`${category.image.src}._AC_SY300_.${category.image.extension}`} alt={category.name} />
+						<img loading="lazy" className="flex-shrink-0 object-cover object-center w-full mb-4 rounded-lg" src={`${category.image.src}._AC_SY300_.${category.image.extension}`} alt={category.name} />
 					</picture>
 				</Link>
 				<h3 className="text-lg font-medium title-font">

@@ -1,7 +1,9 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
-
-// You can delete this file if you're not using it
+export const onServiceWorkerUpdateReady = () => {
+    const answer = window.confirm(
+      `Esta aplicación ha sido actualizada. ` +
+        `Recarga para ver una versión actualizada`
+    )
+    if (answer === true) {
+      window.location.reload()
+    }
+}

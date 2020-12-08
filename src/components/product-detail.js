@@ -5,7 +5,7 @@ import React from "react";
 const ProductDetail = () => {
 	return (
 		<div className="flex flex-wrap mx-auto lg:w-4/5">
-			<img alt="ecommerce" className="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="https://dummyimage.com/400x400" />
+			<img loading="lazy" alt="ecommerce" className="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="https://dummyimage.com/400x400" />
 			<div className="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
 				<h2 className="text-sm tracking-widest text-gray-500 title-font">BRAND NAME</h2>
 				<h1 className="mb-1 text-3xl font-medium text-gray-900 title-font">The Catcher in the Rye</h1>

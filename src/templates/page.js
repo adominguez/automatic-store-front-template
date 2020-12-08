@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import Parser from 'html-react-parser';
 import Layout from "../components/layout";
@@ -10,27 +10,13 @@ import AmazonSearch from "../components/amazon-search";
 // import HeadingColWithText from '../components/heading-col-with-text';
 // import HeadingRowWithLinks from '../components/heading-row-with-links';
 import HomePage from '../components/home-page';
-import {getDevice} from "../utils/utils";
 import '../css/index.css';
 
-export default ({ pageContext: { page = {}, colors, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword }, pageContext }) => {
-  const { amazonWidthValue, useAmazonSearch } = design;
-  const { secondaryColor, primaryColor } = colors;
+export default ({ pageContext: { page = {}, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword }, pageContext }) => {
+  const { useAmazonSearch } = design;
   const { content: {firstContent, secondContent, thirdContent, fourthContent} = {} } = page;
 
   console.log(pageContext);
-  
-  const [device, setDevice] = useState(getDevice());
-
-  useLayoutEffect(() => {
-    const updateSize = () => {
-      const newDevice = getDevice();
-      setDevice(newDevice);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
 
   const productsPriceValues = () => {
     const productsFiltered = []

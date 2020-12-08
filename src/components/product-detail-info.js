@@ -37,7 +37,7 @@ const ProductDetailInfo = () => {
 					</button>
 				</div>
 			</div>
-			<img alt="ecommerce" className="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="https://dummyimage.com/400x400" />
+			<img alt="ecommerce" loading="lazy" className="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="https://dummyimage.com/400x400" />
 		</div>
 	)
 }

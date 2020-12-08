@@ -14,7 +14,7 @@ const BasicProductsList = ({products, tag}) => {
 							<picture>
 								<source media="(max-width: 480px)" srcSet={`${product.featureImage.src}._AC_SY400_.${product.featureImage.extension}`}></source>
 								<source media="(max-width: 768px)" srcSet={`${product.featureImage.src}._AC_SY300_.${product.featureImage.extension}`}></source>
-								<img className="flex-shrink-0 object-cover object-center w-full mb-4 rounded-lg h-70 :hover:h-none" src={`${product.featureImage.src}._AC_SY300_.${product.featureImage.extension}`} alt={product.name} />
+								<img loading="lazy" className="flex-shrink-0 object-cover object-center w-full mb-4 rounded-lg h-70 :hover:h-none" src={`${product.featureImage.src}._AC_SY300_.${product.featureImage.extension}`} alt={product.name} />
 							</picture>
 						</div>
 						<div className="mt-4">
