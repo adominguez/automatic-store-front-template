@@ -1,34 +1,18 @@
 import { Link } from "gatsby";
-import PropTypes from "prop-types";
-import React, { useState, useLayoutEffect } from "react";
-import { widthValue } from "../utils/utils.js";
-import SearchInput from "../components/search-input.js"
+import React, { useState } from "react";
+import TransformText from "./transform-text.js";
 
-const Nav = ({templateWidthValue, color}) => {
+const Nav = () => {
   const [menuOpened, setMenuOpened] = useState(false);
-  const [openResults, setOpenResults] = useState(false);
-
-  useLayoutEffect(() => {
-    if(!menuOpened) {
-      setOpenResults(false);
-    }
-  }) 
 
   const toggleMenu = () => {
       setMenuOpened(!menuOpened);
   }
-  
+
   return (
-    <nav className={`bg-${color}-400 z-40 md:z-20`}>
-      <div className={`flex justify-center flex-col-reverse absolute bg-${color}-400 w-screen px-0 shadow-lg z-10 md:justify-start md:px-${widthValue[templateWidthValue]} md:relative`}>
-        <ul className={`${menuOpened ? 'flex flex-col' : 'hidden'} md:flex md:flex-row`}>
-          <li className="flex justify-center"><Link to="/" className={`p-3 flex flex-1 justify-center hover:bg-${color}-600 text-center cursor-pointer`}>home</Link></li>
-          <li className="flex justify-center"><Link to="#" className={`p-3 flex flex-1 justify-center hover:bg-${color}-600 text-center cursor-pointer`}>Url 1</Link></li>
-        </ul>
-        <div className={`flex justify-center text-gray-600 px-4 py-2 ${menuOpened ? 'flex flex-col' : 'hidden'}`}>
-          <SearchInput />
-        </div>
-        <button className="flex justify-center p-3 md:hidden" onClick={toggleMenu}>
+    <nav className={`principal-container bg-secondary-500 z-40 md:z-20 md:shadow-lg`}>
+      <div className={`principal-container flex-col relative bg-secondary-500 shadow-lg z-10 md:shadow-none md:w-templateValue md:justify-start`}>
+        <button className="p-3 centered-flex md:hidden" onClick={toggleMenu}>
           {
             menuOpened ?
               <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,19 +24,21 @@ const Nav = ({templateWidthValue, color}) => {
               </svg>
           }
         </button>
+        <ul className={`${menuOpened ? 'flex flex-col' : 'hidden'} absolute top-12 w-full shadow-lg bg-secondary-500 md:flex md:shadow-none md:top-0 md:relative md:flex-row`}>
+          <li className="centered-flex">
+            <Link to="/" className={`p-3 flex flex-1 justify-center text-white text-center hover:bg-secondary-800 focus:bg-secondary-800 focus:outline-none cursor-pointer`}>
+              <TransformText uppercaseFirstLetter text={'home'} />
+            </Link>
+          </li>
+          <li className="centered-flex">
+            <Link to="#" className={`p-3 flex flex-1 justify-center text-white text-center hover:bg-secondary-800 focus:bg-secondary-800 focus:outline-none cursor-pointer`}>
+              <TransformText uppercaseFirstLetter text={'url 1'} />
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   )
-}
-
-Nav.propTypes = {
-  templateWidthValue: PropTypes.string,
-  color: PropTypes.string
-}
-
-Nav.defaultProps = {
-  templateWidthValue: '80',
-  color: '#424242'
 }
 
 export default Nav;

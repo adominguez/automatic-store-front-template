@@ -26,7 +26,6 @@ const Layout = ({ children }) => {
           siteLogo
           primaryColor
           secondaryColor
-          bodyBackgroundColor
           useTransparentContentBackground
           sidebarWidthValue
           sidebarColor
@@ -48,13 +47,13 @@ const Layout = ({ children }) => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  const bodyBackgroundColor = data.site.siteMetadata?.bodyBackgroundColor;
   const logoPositionValue = data.site.siteMetadata?.logoPositionValue;
+  const useLogo = data.site.siteMetadata?.useLogo;
+  const siteLogo = data.site.siteMetadata?.siteLogo;
   const templateWidthValue = data.site.siteMetadata?.templateWidthValue;
   const useMenu = data.site.siteMetadata?.useMenu;
   const useMenuWidth = data.site.siteMetadata?.useMenuWidth;
   const useHeaderWhite = data.site.siteMetadata?.useHeaderWhite;
-  const primaryColor = data.site.siteMetadata?.primaryColor;
   const secondaryColor = data.site.siteMetadata?.secondaryColor;
   const siteName = data.site.siteMetadata?.siteName;
   const useTransparentContentBackground = data.site.siteMetadata?.useTransparentContentBackground;
@@ -64,17 +63,19 @@ const Layout = ({ children }) => {
   const useFooterWidth = data.site.siteMetadata?.useFooterWidth;
 
   return (
-    <div className={`flex flex-col h-screen bg-${bodyBackgroundColor}`}>
-      <Header logoPositionValue={logoPositionValue} device={device} templateWidthValue={templateWidthValue} useHeaderWhite={useHeaderWhite} color={primaryColor} siteTitle={siteName} />
+    <div className={`flex flex-col h-screen ${useTransparentContentBackground ? 'bg-transparent' : 'bg-backgroundSite'}`}>
+      <Header logoPositionValue={logoPositionValue} device={device} useHeaderWhite={useHeaderWhite} siteTitle={siteName} useLogo={useLogo} siteLogo={siteLogo} />
       {
         useMenu ? <Nav device={device} color={secondaryColor} templateWidthValue={templateWidthValue} useMenuWidth={useMenuWidth} /> : null
       }
       <main className={`overflow-y-auto`}>
-        <div className={`md:px-${widthValue[templateWidthValue]} md:py-4 flex`}>
+        <div className={`py-4 principal-container`}>
           <SearchInput />
         </div>
-        <section className={`flex justify-center flex-col md:px-${widthValue[templateWidthValue]}`}>
-          {children}
+        <section className={`principal-container`}>
+          <div className="w-full md:w-templateValue">
+            {children}
+          </div>
         </section>
         {
           useSidebar ? (

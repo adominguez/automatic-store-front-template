@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
+
+.principal-container {
+    @apply flex justify-center w-full;
+}
+
+.centered-flex {
+    @apply flex justify-center;
+}
+
+.slider-range .ui-state-default:focus,
+.slider-range .ui-state-default:hover {
+    @apply bg-secondary-500;
+}
+
 @tailwind utilities;

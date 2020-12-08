@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
 import React, { useLayoutEffect }  from "react";
 import $ from 'jquery';
-// import 'jquery-ui/ui/widgets/slider';
-// import 'jquery-ui/themes/base/theme.css';
-// import 'jquery-ui/themes/base/slider.css';
-import {isMobileOrTabletDevice, typesOfDevices} from "../utils/utils";
+import TransformText from './transform-text';
 
-const AmazonSearch = ({width, device, secondaryColor, keyword, buttonText, searchBoxImage, amazonSearchText, brands, min, max, showBrands, initialMin, initialMax, currency, tagAffiliate, country}) => {
+const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, brands, min, max, showBrands, initialMin, initialMax, currency, tagAffiliate, country}) => {
 
     const goToAmazon = () => {
         const firstPrice = `p_36%3A${$("#slider-range").slider("values", 0)}00-`;
@@ -42,17 +39,15 @@ const AmazonSearch = ({width, device, secondaryColor, keyword, buttonText, searc
     }
 
     return (
-        <div className="amazonsearch" style={{
-            backgroundColor: secondaryColor,
-            width: isMobileOrTabletDevice(device) ? '100%' : `${width}%`
-        }}>
+        <div className="flex-col self-center w-full p-4 text-center text-white centered-flex bg-primary-500 md:w-amazonValue">
             {
                 amazonSearchText ?
                 <p>{amazonSearchText}</p>
             :
                 <>
-                    <p className="keyword">{keyword}</p>
-                    <p>Encuentra los mejores productos</p>
+                    <p className="text-3xl font-medium sm:text-4xl title-font">
+                        <TransformText text={keyword} uppercaseFirstLetter />
+                    </p>
                 </>
             }
             {
@@ -63,17 +58,14 @@ const AmazonSearch = ({width, device, secondaryColor, keyword, buttonText, searc
                 }
                 </select>
             }
-            <input type="text" id="amount" readOnly className="input-prices" disabled />
-            <div id="slider-range" className="slider-range" />
-            <button className="amazon-slider-button" onClick={goToAmazon}>{buttonText}</button>
+            <label htmlFor="amount">Encuentra los mejores productos</label>
+            <input type="text" id="amount" name="amount" readOnly className="w-full mt-2 mb-5 text-2xl font-bold text-center text-white bg-transparent border-0" disabled />
+            <div id="slider-range" className="w-full slider-range" />
+            <button className="p-4 mx-auto mt-5 text-2xl text-white rounded-md cursor-pointer bg-secondary-500 hover:bg-secondary-700 focus:bg-secondary-700" onClick={goToAmazon}>{buttonText}</button>
         </div>
 )}
 
 AmazonSearch.propTypes = {
-    width: PropTypes.string,
-    primaryColor: PropTypes.string,
-    secondaryColor: PropTypes.string,
-    device: PropTypes.string,
     keyword: PropTypes.string,
     buttonText: PropTypes.string,
     amazonSearchText: PropTypes.string,
@@ -89,10 +81,6 @@ AmazonSearch.propTypes = {
 }
 
 AmazonSearch.defaultProps = {
-    width: '80',
-    primaryColor: '#0097a7',
-    secondaryColor: '#424242',
-    device: typesOfDevices.display.name,
     buttonText: 'Buscar',
     brands:[],
     min:0,

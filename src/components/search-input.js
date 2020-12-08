@@ -1,5 +1,4 @@
 import { Link } from "gatsby";
-import PropTypes from "prop-types";
 import React, {useState} from "react";
 import { itemsToSearch } from "../utils/searcher.js";
 
@@ -32,11 +31,12 @@ const SearchInput = () => {
   }
 
   return (
-    <div className="relative z-30 flex flex-col flex-1 mx-3">
-      <input type="search" name="search" onKeyUp={filterByKeyword} onChange={filterByKeyword} placeholder="Buscar en el sitio..." autoComplete="off" className={`flex-1 px-5 py-3 text-sm bg-white border-2 border-gray-400 border-solid rounded-md border-b-2 focus:outline-none`}/>
+    <div className="relative w-templateValue">
+      <label htmlFor="search"></label>
+      <input type="search" name="search" onKeyUp={filterByKeyword} onChange={filterByKeyword} placeholder="Buscar en el sitio..." autoComplete="off" className={`w-full px-5 py-3 text-sm bg-white border-2 border-gray-400 border-solid rounded-md border-b-2 focus:outline-none focus:border-secondary-500 ${keyword.length ? 'border-secondary-500' : ''}`}/>
         {
           keyword.length ?
-            <div className="absolute z-10 flex flex-col w-full mt-10 overflow-y-auto bg-white border-2 border-t-0 border-gray-400 border-solid rounded-b-md max-h-60">
+            <div className={`absolute z-10 flex flex-col w-full -mt-1 overflow-y-auto bg-white border-2 border-t-0 border-gray-400 ${keyword.length ? 'border-secondary-500' : 'border-gray-400'} border-solid rounded-b-md max-h-60`}>
               {
                 filteredResults.length ?
                   <ul>
@@ -58,9 +58,6 @@ const SearchInput = () => {
         }
     </div>
   )
-}
-
-SearchInput.propTypes = {
 }
 
 export default SearchInput;
