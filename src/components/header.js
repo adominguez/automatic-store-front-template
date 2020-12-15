@@ -5,10 +5,9 @@ import { logoPosition } from "../utils/utils.js";
 import TransformText from "./transform-text.js";
 
 const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, useLogo, siteLogo }) => {
-
   return (
     <header className={`${useHeaderWhite ? 'bg-white' : 'bg-primary-500'} principal-container`}>
-      <div className={`md:justify-${logoPosition[logoPositionValue]} centered-flex p-4 w-templateValue pb-4 shadow-lg`}>
+      <div className={`md:justify-${logoPosition[logoPositionValue]} centered-flex p-4 w-templateValue pb-4`}>
           <Link
             to="/"
             className={`leading-none text-2xl px-3 sm:block sm:text-center no-underline outline-none ${useHeaderWhite ? 'text-primary-500' : 'text-white'} hover:text-secondary-500 focus:text-secondary-500`}

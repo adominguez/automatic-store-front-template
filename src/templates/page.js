@@ -1,20 +1,15 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import Parser from 'html-react-parser';
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import AmazonSearch from "../components/amazon-search";
-// import ProductDetail from "../components/product-detail.js"
-// import ProductDetailInfo from "../components/product-detail-info.js"
-// import HeadingRowWithText from '../components/heading-row-with-text';
-// import HeadingColWithText from '../components/heading-col-with-text';
-// import HeadingRowWithLinks from '../components/heading-row-with-links';
 import HomePage from '../components/home-page';
+import CategoryPage from '../components/category-page';
+import KeywordPage from '../components/keyword-page';
 import '../css/index.css';
 
 export default ({ pageContext: { page = {}, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword }, pageContext }) => {
   const { useAmazonSearch } = design;
-  const { content: {firstContent, secondContent, thirdContent, fourthContent} = {} } = page;
+  const { content = {}, entity } = page;
 
   console.log(pageContext);
 
@@ -67,47 +62,11 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
           (
             <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} tag={tag} />
           ) :
-          (
-          <div className="page-content">
-            {/* <HeadingRowWithLinks />
-            <HeadingRowWithText />
-            <HeadingColWithText />
-            <ProductDetailInfo />
-            <ProductDetail /> */}
-            <div>
-              { firstContent && firstContent.content && 
-                firstContent && firstContent.title && Parser(firstContent.title)
-              }
-              { firstContent && firstContent.content && 
-                firstContent && firstContent.title && Parser(firstContent.content)
-              }
-            </div>
-            <div>
-              { secondContent && secondContent.content && 
-                secondContent && secondContent.title && Parser(secondContent.title)
-              }
-              { secondContent && secondContent.content && 
-                secondContent && secondContent.title && Parser(secondContent.content)
-              }
-            </div>
-            <div>
-              { thirdContent && thirdContent.content && 
-                thirdContent && thirdContent.title && Parser(thirdContent.title)
-              }
-              { thirdContent && thirdContent.content && 
-                thirdContent && thirdContent.title && Parser(thirdContent.content)
-              }
-            </div>
-            <div>
-              { fourthContent && fourthContent.content && 
-                fourthContent && fourthContent.title && Parser(fourthContent.title)
-              }
-              { fourthContent && fourthContent.content && 
-                fourthContent && fourthContent.title && Parser(fourthContent.content)
-              }
-            </div>
-            <Link to="/">Go to home</Link>
-          </div>)
+            entity === 'keywords' ? (<KeywordPage products={products} />) : (
+              <>
+                <CategoryPage content={content} products={products} tag={tag} categories={categories} id={page.id} />
+              </>
+            )
         }
     </Layout>
   )

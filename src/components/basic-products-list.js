@@ -1,15 +1,14 @@
 import PropTypes from "prop-types";
-import { Link } from "gatsby";
 import React from "react";
+import ProductActionPrice from "./product-action-price";
 
 const BasicProductsList = ({products, tag}) => {
-
 	return (
-		<div className="flex flex-wrap">
+		<div className="flex flex-wrap px-2 bg-white rounded-lg lg:p-0">
 			{
 				products.map((product, index) => (
 					product.featureImage &&
-					<Link rel="nofollow noopener noreferrer" target="_blank" to={`${product.link}/tag=${tag}&language=es_ES`}  key={`product-${index}`} className="w-full p-4 border-2 border-transparent outline-none lg:w-1/4 md:w-1/2 focus:border-secondary-100 hover:border-secondary-100">
+					<a rel="nofollow noopener noreferrer" target="_blank" href={`${product.link}/tag=${tag}&language=es_ES`}  key={`product-${index}`} className="w-full p-4 border-2 border-transparent outline-none cursor-pointer lg:w-1/4 md:w-1/2 focus:border-secondary-100 hover:border-secondary-100">
 						<div className="relative flex flex-col justify-center h-56 overflow-hidden rounded">
 							<picture>
 								<source media="(max-width: 480px)" srcSet={`${product.featureImage.src}._AC_SY400_.${product.featureImage.extension}`}></source>
@@ -18,12 +17,12 @@ const BasicProductsList = ({products, tag}) => {
 							</picture>
 						</div>
 						<div className="mt-4">
-							<h3 title={product.name} className="overflow-hidden text-xs font-medium title-font text-secondary-500 truncate-3-lines">
+							<h3 title={product.name} className="mb-2 overflow-hidden font-medium text-s title-font text-secondary-500 truncate-3-lines">
 								{product.name}
 							</h3>
-							<p className="mt-1 text-lg text-primary-500">{product.price.replace('.', ',')}</p>
+							<ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={product} />
 						</div>
-					</Link>
+					</a>
 				))
 			}
 		</div>
@@ -31,17 +30,13 @@ const BasicProductsList = ({products, tag}) => {
 }
 
 BasicProductsList.propTypes = {
-	pluralPrincipalKeyword: PropTypes.string,
-	singularPrincipalKeyword: PropTypes.string,
-	categories: PropTypes.array,
-	content: PropTypes.string
+	products: PropTypes.array,
+	tag: PropTypes.string
 }
 
 BasicProductsList.defaultProps = {
-	pluralPrincipalKeyword: 'los productos',
-	singularPrincipalKeyword: 'producto',
-	categories: [],
-	content: ``
+	products: [],
+	tag: ``
 }
 
 export default BasicProductsList;

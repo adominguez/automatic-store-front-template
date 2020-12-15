@@ -12,6 +12,76 @@ export const typesOfDevices = {
     }
 }
 
+const extractProductsToCompare = (products, productDataToCompare) => {
+    const productsToCompare = [];
+    products.forEach(product => {
+        const { productData = [] } = product;
+        const productDataStringified = productData.map(item => item.key).sort((a, b) => a.localeCompare(b)).toString().toLowerCase();
+        if(productDataStringified === productDataToCompare) {
+            productsToCompare.push(product);
+        }
+    });
+    return productsToCompare
+}
+
+export const calculateCheaperProducts = (products = [], numberOfProducts = 4) => {
+    const productsPriceTransformed = products.length && products.map(product => ({
+        ...product,
+        price: parseFloat(product.price.replace(' €'))
+    }));
+    const cheaper =  productsPriceTransformed.length && productsPriceTransformed.sort((a, b) => a.price - b.price).filter(item => item.price > 0)
+    return cheaper.map(product => ({
+        ...product,
+        price: `${product.price} €`
+    })).slice(0, numberOfProducts <= cheaper.length ? numberOfProducts : cheaper.length);
+}
+
+export const comparisonProducts = (products) => {
+    const productsWithData = products.filter(product => product.productData);
+    let productsGrouped = {}
+    productsWithData.forEach(product => {
+        productsGrouped = {
+            ...productsGrouped,
+            [product.productData.length]: {
+                ...productsGrouped[product.productData.length],
+                [product.asin]: {
+                    ...product
+                }
+            }
+        }
+    });
+    const productsGroupedConvertedToArray = Object.values(productsGrouped)
+    const asinConvertedToArray = Object.values(productsGroupedConvertedToArray).map(item => Object.values(item))
+    const possibleValues = asinConvertedToArray.filter(item => item.length > 1);
+    const productsData = {};
+    possibleValues.forEach((item, index) => {
+        const productDataStringified = [];
+        item.map(data => data.productData).forEach(product => {
+            productDataStringified.push(product.map(item => item.key).sort((a, b) => a.localeCompare(b)).toString().toLowerCase());
+        });
+        productsData[index] = productDataStringified;
+    })
+    const items = {};
+    Object.values(productsData).forEach((item, ind) => {
+        const productsList = [];
+        const newFilter = item;
+        newFilter.forEach((key, index) => {
+            const dataFiltered = newFilter.filter(newItem => newItem === key)
+            if(dataFiltered.length > 1 && !productsList.includes(key)) {
+                productsList.push(key);
+            }
+        });
+        if(productsList.length) {
+            items[ind] = productsList;
+        }
+    });
+    return Object.values(items).length ? extractProductsToCompare(products, Object.values(items)[0][0]) : [];
+}
+
+export const getFeaturedProduct = (products) => {
+    return products[1];
+}
+
 export const getDevice = () => {
     var device = typesOfDevices.display.name;
     if (typeof window !== `undefined`) {
@@ -29,13 +99,6 @@ export const getDevice = () => {
 
 export const isMobileOrTabletDevice = (device) => {
     return device === typesOfDevices.tablet.name || device === typesOfDevices.mobile.name
-}
-
-export const widthValue = {
-    70: 60,
-    80: 40,
-    90: 20,
-    100: 0, 
 }
 
 export const logoPosition = {

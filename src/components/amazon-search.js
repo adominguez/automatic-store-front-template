@@ -45,9 +45,9 @@ const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, br
                 <p>{amazonSearchText}</p>
             :
                 <>
-                    <p className="text-3xl font-medium sm:text-4xl title-font">
+                    <h1 className="text-3xl font-medium sm:text-4xl title-font">
                         <TransformText text={keyword} uppercaseFirstLetter />
-                    </p>
+                    </h1>
                 </>
             }
             {

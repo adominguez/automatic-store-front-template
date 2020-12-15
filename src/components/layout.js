@@ -7,8 +7,6 @@ import Nav from "./nav";
 import SearchInput from "./search-input.js"
 import "./layout.css";
 import { getDevice, isMobileOrTabletDevice } from '../utils/utils';
-import { widthValue } from "../utils/utils.js";
-
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

@@ -32,8 +32,9 @@ const SearchInput = () => {
 
   return (
     <div className="relative w-templateValue">
-      <label htmlFor="search"></label>
-      <input type="search" name="search" onKeyUp={filterByKeyword} onChange={filterByKeyword} placeholder="Buscar en el sitio..." autoComplete="off" className={`w-full px-5 py-3 text-sm bg-white border-2 border-gray-400 border-solid rounded-md border-b-2 focus:outline-none focus:border-secondary-500 ${keyword.length ? 'border-secondary-500' : ''}`}/>
+      <label htmlFor="search">
+        <input type="search" id="search" name="search" onKeyUp={filterByKeyword} onChange={filterByKeyword} placeholder="Buscar en el sitio..." autoComplete="off" className={`w-full px-5 py-3 text-sm bg-white border-2 border-gray-400 border-solid rounded-md border-b-2 focus:outline-none focus:border-secondary-500 ${keyword.length ? 'border-secondary-500' : ''}`}/>
+      </label>
         {
           keyword.length ?
             <div className={`absolute z-10 flex flex-col w-full -mt-1 overflow-y-auto bg-white border-2 border-t-0 border-gray-400 ${keyword.length ? 'border-secondary-500' : 'border-gray-400'} border-solid rounded-b-md max-h-60`}>
