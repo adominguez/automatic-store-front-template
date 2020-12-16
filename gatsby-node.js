@@ -33,7 +33,7 @@ exports.createPages = async ({
   const { analyticId } = await getThirdServicesByEntity({url: urlTagAnalytics, param: analytics });
   const allPages = await categories.concat(keywords);
   // Create a page for each page.
-  allPages.forEach(async page => {
+  await allPages.forEach(async page => {
     const { relatedProductsAsin } = page;
     let products = [];
     if(relatedProductsAsin) {
