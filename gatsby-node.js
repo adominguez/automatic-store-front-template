@@ -41,7 +41,6 @@ exports.createPages = async ({
       const url = 'products-by-asin';
       products = await getDataByEntity({url, query});
     }
-    console.log(`Creating ... ${page.name}`);
     await createPage({
       path: page.useHomePage ? `/` : `/${page.url}`,
       component: require.resolve('./src/templates/page.js'),

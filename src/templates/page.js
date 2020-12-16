@@ -11,8 +11,6 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
   const { useAmazonSearch } = design;
   const { content = {}, entity } = page;
 
-  console.log(pageContext);
-
   const productsPriceValues = () => {
     const productsFiltered = []
     products.forEach(product => {
