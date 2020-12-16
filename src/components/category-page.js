@@ -30,7 +30,7 @@ const CategoryPage = ({content, products, tag, categories, id}) => {
 		return image;
 	}
 	
-	const renderHeading = (heading, text, headingType, preHeading, image) => {
+	const renderHeading = (heading = '', text = '', headingType = 2, preHeading, image) => {
 		return text.length < 300 ? (<HeadingRowWithText headingType={headingType} heading={heading} text={text} />) 
 		: text.length >= 300 && text.length > 700 && image ? (<HeadingRowWithImage headingType={headingType} heading={heading} text={text} preHeading={preHeading} image={image} />)
 		: (<HeadingColWithText headingType={headingType} heading={heading} text={text} preHeading={preHeading} />)
