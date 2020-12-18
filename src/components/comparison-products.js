@@ -1,21 +1,21 @@
 import PropTypes from "prop-types";
 import React from "react";
 import ProductsStars from "./product-stars";
+import { Link } from "gatsby";
+import { isOdd } from "../utils/utils";
 
-const ComparisonProducts = ({ products, informationButtonText }) => {
-
-	const isOdd = (num) => num % 2;
+const ComparisonProducts = ({ products, informationButtonText, relativePath }) => {
 
 	const renderTableAttributes = () => {
 		const { productData } = products[0];
 		return (
 			<div className="mt-px overflow-hidden border-t border-b border-l border-gray-300 rounded-tl-lg rounded-bl-lg">
-				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 bg-gray-100`}>Producto</p>
-				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500`}>Precio</p>
-				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 bg-gray-100`}>Valoración</p>
+				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 bg-gray-200`}>Producto</p>
+				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 bg-white`}>Precio</p>
+				<p className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 bg-gray-200`}>Valoración</p>
 				{
 					productData.map((product, index) => (
-						<p key={`productData-${index}`} className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 ${isOdd(index) ? 'bg-gray-100' : ''}`}>{product.key}</p>
+						<p key={`productData-${index}`} className={`flex items-center justify-start h-12 px-4 -mt-px text-center text-textColor-500 ${isOdd(index) ? 'bg-gray-200' : 'bg-white'}`}>{product.key}</p>
 					))
 				}
 			</div>
@@ -25,7 +25,7 @@ const ComparisonProducts = ({ products, informationButtonText }) => {
 	const renderProductData = (productData) => {
 		return (
 			productData.map((data, dataIndex) => (
-				<p key={`product-data-${dataIndex}`} className={`h-12 px-4 -mt-px leading-10 truncate border-gray-300 text-textColor-500 text-center ${isOdd(dataIndex) ? 'bg-gray-100' : ''}`}>{data.value}</p>
+				<p key={`product-data-${dataIndex}`} className={`h-12 px-4 -mt-px leading-10 truncate border-gray-300 text-textColor-500 text-center ${isOdd(dataIndex) ? 'bg-gray-200' : 'bg-white'}`}>{data.value}</p>
 			))
 		)
 	}
@@ -41,17 +41,17 @@ const ComparisonProducts = ({ products, informationButtonText }) => {
 							<img loading="lazy" className="flex-shrink-0 object-cover object-center h-44" src={`${product.featureImage.src}._AC_SY300_.${product.featureImage.extension}`} alt={product.name} />
 						</picture>
 					</div>
-					<p className="h-12 px-4 -mt-px leading-10 text-center truncate bg-gray-100 border-t border-gray-300 text-textColor-500" title={product.name}>{product.name}</p>
-					<p className="flex items-center justify-center h-12 text-xl text-center text-primary-500">{product.price.replace('.', ',')}</p>
-					<p className="flex items-center justify-center h-12 text-center bg-gray-100 text-textColor-500"><ProductsStars amazonRate={product.amazonRate} amazonRatings={product.amazonRatings} /></p>
+					<p className="h-12 px-4 -mt-px leading-10 text-center truncate bg-gray-200 border-t border-gray-300 text-textColor-500" title={product.name}>{product.name}</p>
+					<p className="flex items-center justify-center h-12 text-xl text-center bg-white text-primary-500">{product.price.replace('.', ',')}</p>
+					<p className="flex items-center justify-center h-12 text-center bg-gray-200 text-textColor-500"><ProductsStars amazonRate={product.amazonRate} amazonRatings={product.amazonRatings} /></p>
 					{renderProductData(product.productData)}
 					<div className="p-6 text-center border-t border-gray-300 rounded-bl-lg centered-flex">
-						<button className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700">
+						<Link className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" to={`${relativePath ? '../' : ''}goto?url=${product.link}`}>
 							{informationButtonText}
 							<svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-auto" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
 							</svg>
-						</button>
+						</Link>
 					</div>
 				</div>
 			))
@@ -59,7 +59,7 @@ const ComparisonProducts = ({ products, informationButtonText }) => {
 	}
 
 	return (
-		<div className="container flex flex-wrap px-2 mx-auto md:px-0">
+		<div className="container flex flex-wrap px-4">
 			<div className="hidden mt-48 lg:w-1/4 lg:block">
 				{renderTableAttributes()}
 			</div>
@@ -72,12 +72,14 @@ const ComparisonProducts = ({ products, informationButtonText }) => {
 
 ComparisonProducts.propTypes = {
 	products: PropTypes.array,
-	informationButtonText: PropTypes.string
+	informationButtonText: PropTypes.string,
+	relativePath: PropTypes.bool
 }
 
 ComparisonProducts.defaultProps = {
 	products: [],
-	informationButtonText: 'Ver más información'
+	informationButtonText: 'Ver más información',
+	relativePath: false
 }
 
 export default ComparisonProducts;
