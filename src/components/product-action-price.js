@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import ProductsStars from "./product-stars";
-import { Link } from "gatsby";
 
 const ProductActionPrice = ({ product, buttonText, hideAmazonRatings, hideAmazonRate, useAction, relativePath, tag }) => {
 	return (
@@ -12,7 +11,7 @@ const ProductActionPrice = ({ product, buttonText, hideAmazonRatings, hideAmazon
 			</div>
 			{
 				useAction ?
-				<a className="flex items-center w-auto px-4 py-2 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" href={`${relativePath ? '../' : ''}goto?url=${product.link}&tag=${tag}`} target="_blank">
+				<a className="flex items-center w-auto px-4 py-2 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" href={`${relativePath ? '../' : ''}goto?url=${product.link}&tag=${tag}`} target="_blank" rel="nofollow noopener noreferrer">
 					{buttonText}
 					<svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-auto" viewBox="0 0 24 24">
 						<path d="M5 12h14M12 5l7 7-7 7"></path>

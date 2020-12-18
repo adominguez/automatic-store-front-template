@@ -27,7 +27,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 			<div key={`${index}-item-${showAsProducts ? entity.asin : entity.id}`} className={`p-4 ${entities.length % 3 === 0 ? 'xl:w-1/3' : 'xl:w-1/4'} w-full md:w-1/2`}>
 				{
 					showAsProducts ?
-						<a className={`flex-col p-2 overflow-hidden border border-gray-300 rounded-lg ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 bg-white`} href={setUrlInformation(entity)} target="_blank">
+						<a className={`flex-col p-2 overflow-hidden border border-gray-300 rounded-lg ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 bg-white`} href={setUrlInformation(entity)} target="_blank" rel="nofollow noopener noreferrer">
 							<div className="items-center flex-grow overflow-hidden flex-2 centered-flex">
 								<picture>
 									<source media="(max-width: 480px)" srcSet={`${setImageInformation(entity, 'src')}._AC_SY400_.${setImageInformation(entity, 'extension')}`}></source>
@@ -71,7 +71,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 			<div key={`${index}-item-${showAsProducts ? entity.asin : entity.id}`} className="w-full p-4 lg:w-1/2">
 				{
 					showAsProducts ? 
-						<a className={`flex-col p-2 border border-gray-300 rounded-lg lg:flex-row ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 lg:h-60 bg-white`} href={setUrlInformation(entity)} target="_blank">
+						<a className={`flex-col p-2 border border-gray-300 rounded-lg lg:flex-row ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 lg:h-60 bg-white`} href={setUrlInformation(entity)} target="_blank" rel="nofollow noopener noreferrer">
 							<div className="items-center flex-grow pr-2 overflow-hidden flex-2 centered-flex lg:flex-1">
 								<picture>
 									<source media="(max-width: 480px)" srcSet={`${setImageInformation(entity, 'src')}._AC_SY400_.${setImageInformation(entity, 'extension')}`}></source>
