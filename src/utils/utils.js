@@ -12,18 +12,6 @@ export const typesOfDevices = {
     }
 }
 
-const extractProductsToCompare = (products, productDataToCompare) => {
-    const productsToCompare = [];
-    products.forEach(product => {
-        const { productData = [] } = product;
-        const productDataStringified = productData.map(item => item.key).sort((a, b) => a.localeCompare(b)).toString().toLowerCase();
-        if(productDataStringified === productDataToCompare) {
-            productsToCompare.push(product);
-        }
-    });
-    return productsToCompare
-}
-
 export const calculateCheaperProducts = (products = [], numberOfProducts = 4) => {
     const productsPriceTransformed = products.length && products.map(product => ({
         ...product,
@@ -36,51 +24,11 @@ export const calculateCheaperProducts = (products = [], numberOfProducts = 4) =>
     })).slice(0, numberOfProducts <= cheaper.length ? numberOfProducts : cheaper.length);
 }
 
-export const comparisonProducts = (products) => {
-    const productsWithData = products.filter(product => product.productData);
-    let productsGrouped = {}
-    productsWithData.forEach(product => {
-        productsGrouped = {
-            ...productsGrouped,
-            [product.productData.length]: {
-                ...productsGrouped[product.productData.length],
-                [product.asin]: {
-                    ...product
-                }
-            }
-        }
-    });
-    const productsGroupedConvertedToArray = Object.values(productsGrouped)
-    const asinConvertedToArray = Object.values(productsGroupedConvertedToArray).map(item => Object.values(item))
-    const possibleValues = asinConvertedToArray.filter(item => item.length > 1);
-    const productsData = {};
-    possibleValues.forEach((item, index) => {
-        const productDataStringified = [];
-        item.map(data => data.productData).forEach(product => {
-            productDataStringified.push(product.map(item => item.key).sort((a, b) => a.localeCompare(b)).toString().toLowerCase());
-        });
-        productsData[index] = productDataStringified;
-    })
-    const items = {};
-    Object.values(productsData).forEach((item, ind) => {
-        const productsList = [];
-        const newFilter = item;
-        newFilter.forEach((key, index) => {
-            const dataFiltered = newFilter.filter(newItem => newItem === key)
-            if(dataFiltered.length > 1 && !productsList.includes(key)) {
-                productsList.push(key);
-            }
-        });
-        if(productsList.length) {
-            items[ind] = productsList;
-        }
-    });
-    return Object.values(items).length ? extractProductsToCompare(products, Object.values(items)[0][0]) : [];
+export const getBestProducts = (products, number = 1) => {
+    return products && products.length && products.sort((a, b) => b.score - a.score).slice(0, number);
 }
 
-export const getFeaturedProduct = (products) => {
-    return products[1];
-}
+export const isOdd = (num) => num % 2;
 
 export const getDevice = () => {
     var device = typesOfDevices.display.name;

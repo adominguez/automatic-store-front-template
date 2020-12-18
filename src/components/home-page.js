@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import CategoriesList from '../components/categories-list';
-import BasicProductsList from '../components/basic-products-list';
-import { calculateCheaperProducts } from '../utils/utils'
-import HeadingColWithText from "./heading-col-with-text";
-import HeadingRowWithText from "./heading-row-with-text";
-import HeadingRowWithImage from "./heading-row-with-image";
+import EntitiesList from '../components/entities-list';
+import { calculateCheaperProducts, isOdd } from '../utils/utils'
+import TextBlock from "./text-block";
+import ComparisonProducts from './comparison-products';
+import FeatureProduct from './feature-product';
 
-const HomePage = ({categories, pluralPrincipalKeyword, singularPrincipalKeyword, products, tag}) => {
+const HomePage = ({categories, pluralPrincipalKeyword, singularPrincipalKeyword, products, interlinking, productsToCompare, bestProducts}) => {
 
 const headingCategoryText = `Categorías de ${pluralPrincipalKeyword}`;
 const categoryText = `Si estás buscando un sitio en el que puedas encontrar <b>todo lo relacionado con ${pluralPrincipalKeyword}</b> estás en el sitio adecuado. Aquí cuentas con una gran variedad de categorías, en cada una de ellas encontrarás productos interesantes, échale un vistazo a toda nuestra web, y encuentra tu ${singularPrincipalKeyword}.`;
@@ -15,11 +14,8 @@ const categoryText = `Si estás buscando un sitio en el que puedas encontrar <b>
 const cheaperProductsHeading = `Los productos más baratos`
 const cheaperProductsText = `En este sitio podrás encontrar todo un <b>catálogo completo de ${pluralPrincipalKeyword}</b>, Hay infinidad de modelos y marcas, por lo que es natural que no sepas <b>que ${singularPrincipalKeyword} comprar</b> que mejor se adapte a tus necesidades, no te preocupes, Aquí podrás encontrar todo lo que necesitas saber para realizar la mejor elección.`
 
-const renderHeading = (heading, text, headingType, preHeading, image) => {
-	return text.length < 300 ? (<HeadingRowWithText headingType={headingType} heading={heading} text={text} />) 
-	: text.length >= 300 && text.length > 700 && image ? (<HeadingRowWithImage headingType={headingType} heading={heading} text={text} preHeading={preHeading} image={image} />)
-	: (<HeadingColWithText headingType={headingType} heading={heading} text={text} preHeading={preHeading} />)
-}
+const bestProductsHeading = `Los 10 mejores ${pluralPrincipalKeyword}`
+const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipalKeyword} que vas a encontrar actualmente en el mercado`
 
 	return (
 		<>
@@ -27,10 +23,10 @@ const renderHeading = (heading, text, headingType, preHeading, image) => {
 				categories && categories.length && 
 				<>
 					<div className="py-12">
-						{renderHeading(headingCategoryText, categoryText, 2)}
+						<TextBlock heading={headingCategoryText} text={categoryText} headingSize={2} />
 					</div>
-					<div className="px-3 mb-12">
-						<CategoriesList categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} />
+					<div className="mb-12">
+						<EntitiesList entities={categories} />
 					</div>
 				</>
         	)}
@@ -38,12 +34,33 @@ const renderHeading = (heading, text, headingType, preHeading, image) => {
 				calculateCheaperProducts(products) && calculateCheaperProducts(products).length &&
 				<>
 					<div className="mb-12">
-						{renderHeading(cheaperProductsHeading, cheaperProductsText, 2)}
+						<TextBlock heading={cheaperProductsHeading} text={cheaperProductsText} headingSize={2} />
 					</div>
 					<div className="mb-12">
-						<BasicProductsList products={calculateCheaperProducts(products)} tag={tag} />
+						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts />
 					</div>
 				</>
+			}
+			{
+				!!bestProducts.length &&
+					<>
+						<div className="mb-12">
+							<TextBlock heading={bestProductsHeading} text={bestProductsText} headingSize={2} />
+						</div>
+						<div className="mb-12">
+							{
+								bestProducts.map((product, index) => (
+									<FeatureProduct key={`best-product-${index}`} product={product} rowReverse={isOdd(index)} useAction />
+								))
+							}
+						</div>
+					</>
+			}
+			{
+				!!productsToCompare.length &&
+					<div className="mb-12">
+						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} />
+					</div>
 			}
 		</>
 	)

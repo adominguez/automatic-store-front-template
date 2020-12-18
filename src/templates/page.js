@@ -5,11 +5,12 @@ import AmazonSearch from "../components/amazon-search";
 import HomePage from '../components/home-page';
 import CategoryPage from '../components/category-page';
 import KeywordPage from '../components/keyword-page';
+import { getBestProducts } from '../utils/utils';
 import '../css/index.css';
 
-export default ({ pageContext: { page = {}, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword }, pageContext }) => {
+export default ({ pageContext: { page = {}, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword, interlinking = [] }, pageContext }) => {
   const { useAmazonSearch } = design;
-  const { content = {}, entity } = page;
+  const { content = {}, entity, productsToCompare = [], image } = page;
 
   const productsPriceValues = () => {
     const productsFiltered = []
@@ -27,7 +28,7 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
     for(var i = 0; i < productLength - 1; i++) {
       suma += 0;
     }
-    return minProductPrice - parseInt(suma) < 0 ? 0 : minProductPrice - parseInt(suma);
+    return minProductPrice < 10 ? 0 : minProductPrice - parseInt(suma);
   }
 
   const getMaxProductsPrice = () => {
@@ -58,11 +59,11 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
         keyword={page.name} /> : null}
         {page.useHomePage ?
           (
-            <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} tag={tag} />
+            <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} />
           ) :
             entity === 'keywords' ? (<KeywordPage products={products} />) : (
               <>
-                <CategoryPage content={content} products={products} tag={tag} categories={categories} id={page.id} />
+                <CategoryPage content={content} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} />
               </>
             )
         }

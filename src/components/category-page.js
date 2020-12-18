@@ -1,24 +1,13 @@
 import PropTypes from "prop-types";
-import React, { useState, useEffect } from "react";
-import HeadingRowWithText from './heading-row-with-text';
-import HeadingRowWithImage from './heading-row-with-image';
-import HeadingColWithText from './heading-col-with-text';
-import BasicProductsList from './basic-products-list'
+import React from "react";
+import TextBlock from './text-block';
 import ComparisonProducts from './comparison-products'
-import {calculateCheaperProducts, comparisonProducts, getFeaturedProduct} from '../utils/utils'
+import {calculateCheaperProducts} from '../utils/utils';
 import FeatureProduct from "./feature-product";
-import BasicFeatureProduct from "./basic-feature-product";
-import CategoriesList from "./categories-list";
+import EntitiesList from "./entities-list";
 
-const CategoryPage = ({content, products, tag, categories, id}) => {
+const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image}) => {
 	const {firstContent = {}, secondContent = {}, thirdContent = {}, fourthContent = {}} = content;
-	const [productsToCompare, setProductsToCompare] = useState([]);
-	const [featureProduct, setFeatureProducts] = useState(null);
-
-	useEffect(() => {
-		setProductsToCompare(comparisonProducts(products));
-		setFeatureProducts(getFeaturedProduct(products));
-	}, []);
 
 	const calculateImage = () => {
 		let image = null;
@@ -30,53 +19,80 @@ const CategoryPage = ({content, products, tag, categories, id}) => {
 		return image;
 	}
 	
-	const renderHeading = (heading = '', text = '', headingType = 2, preHeading, image) => {
-		return text.length < 300 ? (<HeadingRowWithText headingType={headingType} heading={heading} text={text} />) 
-		: text.length >= 300 && text.length > 700 && image ? (<HeadingRowWithImage headingType={headingType} heading={heading} text={text} preHeading={preHeading} image={image} />)
-		: (<HeadingColWithText headingType={headingType} heading={heading} text={text} preHeading={preHeading} />)
-	}
-	
 	return (
 		<>
-			<div className="py-12">
-				{renderHeading(firstContent.title, firstContent.content, 2, null, calculateImage())}
-			</div>
-			<div className="mb-12">
-				<BasicProductsList products={products} tag={tag} />
-			</div>
-			<div className="mb-12">
-				{renderHeading(secondContent.title, secondContent.content, 2)}
-			</div>
+			{
+				firstContent.title && firstContent.content && 
+				<div className="py-12">
+					<TextBlock heading={firstContent.title} text={firstContent.content} headingSize={2} image={calculateImage()} />
+				</div>
+			}
+			{
+				products.length > 1 &&
+				<div className="mb-12">
+					{products && products.length && <EntitiesList entities={products} showAsProducts dummyImage={image} relativePath />}
+				</div>
+			}
+			{
+				secondContent.title && secondContent.content &&
+				<div className="mb-12">
+					<TextBlock heading={secondContent.title} text={secondContent.content} headingSize={2} />
+				</div>
+			}
 			{
 				!!productsToCompare.length &&
 					<div className="mb-12">
-						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} />
+						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} relativePath />
 					</div>
 			}
-			<div className="mb-12">
-				{renderHeading(thirdContent.title, thirdContent.content, 2)}
-			</div>
 			{
-				featureProduct && featureProduct.length &&
+				thirdContent.title && thirdContent.content && 
+				<div className="mb-12">
+					<TextBlock heading={thirdContent.title} text={thirdContent.content} headingSize={2} />
+				</div>
+			}
+			{
+				!!bestProducts.length &&
+					<>
+						<div className="mb-12">
+							<TextBlock heading={`Título de feature product`} text={`El mejor producto calidad precio`} headingSize={2} />
+						</div>
+						<div className="mb-12">
+							{
+								bestProducts.map((product, index) => (
+									<FeatureProduct key={`best-product-${index}`} product={product} useAction relativePath />
+								))
+							}
+						</div>
+					</>
+			}
+			{
+				fourthContent.title && fourthContent.content &&
 					<div className="mb-12">
-						{
-							!!featureProduct.productData.length ?
-							<FeatureProduct product={featureProduct} />
-							:
-							<BasicFeatureProduct product={featureProduct} />
-						}
+						<TextBlock heading={fourthContent.title} text={fourthContent.content} headingSize={2} />
 					</div>
 			}
-			<div className="mb-12">
-				{renderHeading(fourthContent.title, fourthContent.content, 2)}
-			</div>
+			{
+				!!interlinking.length &&
+					<>
+						<div className="mb-12">
+							<TextBlock heading={`Más entradas de la categoría`} text={`Contenido de las keywords de interlinking`} headingSize={2} />
+						</div>
+						<div className="mb-12">
+							<EntitiesList entities={interlinking} relativePath inverseClass dummyImage={image} />
+						</div>
+					</>
+			}
 			{
 				!!categories.filter(category => category.id !== id).length &&
-					<div className="mb-12">
-						{
-							<CategoriesList categories={categories.filter(category => category.id !== id)} />
-						}
-					</div>
+					<>
+						<div className="mb-12">
+							<TextBlock heading={`Título para categoría`} text={`Contenido de Categoría`} headingSize={2} />
+						</div>
+						<div className="mb-12">
+							<EntitiesList entities={categories.filter(category => category.id !== id)} relativePath dummyImage={image} />
+						</div>
+					</>
 			}
 		</>
 	)
