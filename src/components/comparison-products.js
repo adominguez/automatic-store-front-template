@@ -46,12 +46,12 @@ const ComparisonProducts = ({ products, informationButtonText, relativePath, tag
 					<p className="flex items-center justify-center h-12 text-center bg-gray-200 text-textColor-500"><ProductsStars amazonRate={product.amazonRate} amazonRatings={product.amazonRatings} /></p>
 					{renderProductData(product.productData)}
 					<div className="p-6 text-center border-t border-gray-300 rounded-bl-lg centered-flex">
-						<Link className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" to={`${relativePath ? '../' : ''}goto?url=${product.link}&tag=${tag}`}>
+						<a className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" href={`${relativePath ? '../' : ''}goto?url=${product.link}&tag=${tag}`} target="_blank">
 							{informationButtonText}
 							<svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-auto" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
 							</svg>
-						</Link>
+						</a>
 					</div>
 				</div>
 			))

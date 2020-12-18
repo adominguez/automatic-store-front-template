@@ -56,6 +56,7 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
         initialMin={getInitialMinProductsPrice()}
         initialMax={getInitialMaxProductsPrice()}
         tagAffiliate={tag}
+        relativePath={!page.useHomePage}
         keyword={page.name} /> : null}
         {page.useHomePage ?
           (

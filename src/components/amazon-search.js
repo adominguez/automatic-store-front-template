@@ -3,7 +3,7 @@ import React, { useLayoutEffect }  from "react";
 import $ from 'jquery';
 import TransformText from './transform-text';
 
-const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, brands, min, max, showBrands, initialMin, initialMax, currency, tagAffiliate, country}) => {
+const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, brands, min, max, showBrands, initialMin, initialMax, currency, tagAffiliate, country, relativePath}) => {
 
     const goToAmazon = () => {
         const firstPrice = `p_36%3A${$("#slider-range").slider("values", 0)}00-`;
@@ -12,7 +12,8 @@ const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, br
         if(isBrands()) {
           selectedBrand = `p_89%3A${document.querySelector('#brandsList').value}%2C`;
         }
-        const url = `https://amazon.${country.toLowerCase()}/s?k=${keyword}&rh=${selectedBrand}${firstPrice}${secondPrice}&linkCode=ll2&tag=${tagAffiliate}`
+        const host = window.location.origin;
+        const url = `${host}/goto?url=https://amazon.${country.toLowerCase()}/keyword=${keyword}&rh=${selectedBrand}${firstPrice}${secondPrice}&linkCode=ll2&tag=${tagAffiliate}`
         window.open(url, '_blank');
     }
 
@@ -77,7 +78,8 @@ AmazonSearch.propTypes = {
     initialMax: PropTypes.number,
     currency: PropTypes.string,
     tagAffiliate: PropTypes.string,
-    country: PropTypes.string
+    country: PropTypes.string,
+    relativePath: PropTypes.bool
 }
 
 AmazonSearch.defaultProps = {
@@ -88,7 +90,8 @@ AmazonSearch.defaultProps = {
     initialMin: 50,
     initialMax: 900,
     currency: '€',
-    country: 'es'
+    country: 'es',
+    relativePath: false
 }
 
 export default AmazonSearch

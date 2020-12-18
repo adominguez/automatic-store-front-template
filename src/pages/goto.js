@@ -12,8 +12,14 @@ const Goto = ({location}) => {
     useEffect(() => {
         const searchSplitted = search.split('?url=');
         if(searchSplitted.length > 1) {
-            const url = searchSplitted[1].split('&tag=')
-            setUrlToRedirect(`${url[0]}/ref=as_li_ss_tl?ie=UTF8&linkCode=ll1&${url[1]}`);
+            let url = ''
+            if(searchSplitted[1].includes('keyword')) {
+                url = searchSplitted[1].split('/keyword=')
+                setUrlToRedirect(`${url[0]}/s?k=${url[1]}`);
+            } else {
+                url = searchSplitted[1].split('&tag=')
+                setUrlToRedirect(`${url[0]}/ref=as_li_ss_tl?ie=UTF8&linkCode=ll1&${url[1]}`);
+            }
         } else {
             window.location = '/';
         }
