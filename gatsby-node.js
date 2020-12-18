@@ -34,12 +34,18 @@ exports.createPages = async ({
   const allPages = await categories.concat(keywords);
   // Create a page for each page.
   await allPages.forEach(async page => {
-    const { relatedProductsAsin } = page;
+    const { relatedProductsAsin = [], interlinking : links = [] } = page;
     let products = [];
-    if(relatedProductsAsin) {
+    if(relatedProductsAsin.length) {
       const query = `products=${relatedProductsAsin.join(',')}`;
       const url = 'products-by-asin';
       products = await getDataByEntity({url, query});
+    }
+    let interlinking = [];
+    if(links.length) {
+      const query = `keywords=${links.join(',')}`;
+      const url = 'keywords-by-id';
+      interlinking = await getDataByEntity({url, query}) || [];
     }
     await createPage({
       path: page.useHomePage ? `/` : `/${page.url}`,
@@ -54,7 +60,8 @@ exports.createPages = async ({
         pluralPrincipalKeyword,
         singularPrincipalKeyword,
         genrePrincipalKeyword,
-        analyticId
+        analyticId,
+        interlinking
       }
     });
   });
