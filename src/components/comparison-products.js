@@ -4,7 +4,7 @@ import ProductsStars from "./product-stars";
 import { Link } from "gatsby";
 import { isOdd } from "../utils/utils";
 
-const ComparisonProducts = ({ products, informationButtonText, relativePath }) => {
+const ComparisonProducts = ({ products, informationButtonText, relativePath, tag }) => {
 
 	const renderTableAttributes = () => {
 		const { productData } = products[0];
@@ -46,7 +46,7 @@ const ComparisonProducts = ({ products, informationButtonText, relativePath }) =
 					<p className="flex items-center justify-center h-12 text-center bg-gray-200 text-textColor-500"><ProductsStars amazonRate={product.amazonRate} amazonRatings={product.amazonRatings} /></p>
 					{renderProductData(product.productData)}
 					<div className="p-6 text-center border-t border-gray-300 rounded-bl-lg centered-flex">
-						<Link className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" to={`${relativePath ? '../' : ''}goto?url=${product.link}`}>
+						<Link className="flex items-center w-auto px-4 py-2 mt-auto text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-700 focus:bg-primary-700" to={`${relativePath ? '../' : ''}goto?url=${product.link}&tag=${tag}`}>
 							{informationButtonText}
 							<svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-auto" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -73,7 +73,8 @@ const ComparisonProducts = ({ products, informationButtonText, relativePath }) =
 ComparisonProducts.propTypes = {
 	products: PropTypes.array,
 	informationButtonText: PropTypes.string,
-	relativePath: PropTypes.bool
+	relativePath: PropTypes.bool,
+	tag: PropTypes.string
 }
 
 ComparisonProducts.defaultProps = {

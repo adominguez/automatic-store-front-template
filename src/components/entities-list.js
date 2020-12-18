@@ -4,7 +4,7 @@ import React from "react";
 import ProductActionPrice from './product-action-price';
 import TransformText from '../components/transform-text';
 
-const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, numberOfEntities, dummyImage}) => {
+const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, numberOfEntities, dummyImage, tag}) => {
 
 	const setImageInformation = (entity, type) => {
 		if(showAsProducts) {
@@ -16,7 +16,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 
 	const setUrlInformation = (entity) => {
 		if(showAsProducts) {
-			return `${relativePath ? '../' : ''}goto?url=${entity.link}`;
+			return `${relativePath ? '../' : ''}goto?url=${entity.link}&tag=${tag}`;
 		} else {
 			return `${relativePath ? '../' : ''}${entity.url}`
 		}
@@ -48,7 +48,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 	const templateLowerTen = (entity, index) => {
 		return (
 			<div key={`${index}-item-${showAsProducts ? entity.asin : entity.id}`} className="w-full p-4 lg:w-1/2">
-				<Link className={`flex-col p-2 border border-gray-300 rounded-lg lg:flex-row ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 lg:h-60`} to={setUrlInformation(entity)}>
+				<Link className={`flex-col p-2 border border-gray-300 rounded-lg lg:flex-row ${inverseClass ? 'hover:border-secondary-300 focus:border-secondary-500' : 'hover:border-primary-300 focus:border-primary-500'} outline-none centered-flex h-96 lg:h-60 bg-white`} to={setUrlInformation(entity)}>
 					<div className="items-center flex-grow pr-2 overflow-hidden flex-2 centered-flex lg:flex-1">
 						<picture>
 							<source media="(max-width: 480px)" srcSet={`${setImageInformation(entity, 'src')}._AC_SY400_.${setImageInformation(entity, 'extension')}`}></source>
@@ -95,7 +95,8 @@ EntitiesList.propTypes = {
 	relativePath: PropTypes.bool,
 	inverseClass: PropTypes.bool,
 	numberOfEntities: PropTypes.number,
-	dummyImage: PropTypes.object
+	dummyImage: PropTypes.object,
+	tag: PropTypes.string
 }
 
 EntitiesList.defaultProps = {

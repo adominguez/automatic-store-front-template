@@ -6,7 +6,7 @@ import TextBlock from "./text-block";
 import ComparisonProducts from './comparison-products';
 import FeatureProduct from './feature-product';
 
-const HomePage = ({categories, pluralPrincipalKeyword, singularPrincipalKeyword, products, interlinking, productsToCompare, bestProducts}) => {
+const HomePage = ({categories, pluralPrincipalKeyword, singularPrincipalKeyword, products, interlinking, productsToCompare, bestProducts, tag}) => {
 
 const headingCategoryText = `Categorías de ${pluralPrincipalKeyword}`;
 const categoryText = `Si estás buscando un sitio en el que puedas encontrar <b>todo lo relacionado con ${pluralPrincipalKeyword}</b> estás en el sitio adecuado. Aquí cuentas con una gran variedad de categorías, en cada una de ellas encontrarás productos interesantes, échale un vistazo a toda nuestra web, y encuentra tu ${singularPrincipalKeyword}.`;
@@ -37,7 +37,7 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 						<TextBlock heading={cheaperProductsHeading} text={cheaperProductsText} headingSize={2} />
 					</div>
 					<div className="mb-12">
-						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts />
+						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts tag={tag} />
 					</div>
 				</>
 			}
@@ -50,7 +50,7 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 						<div className="mb-12">
 							{
 								bestProducts.map((product, index) => (
-									<FeatureProduct key={`best-product-${index}`} product={product} rowReverse={isOdd(index)} useAction />
+									<FeatureProduct key={`best-product-${index}`} product={product} rowReverse={isOdd(index)} useAction tag={tag} />
 								))
 							}
 						</div>
@@ -59,7 +59,7 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 			{
 				!!productsToCompare.length &&
 					<div className="mb-12">
-						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} />
+						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} tag={tag} />
 					</div>
 			}
 		</>
@@ -71,7 +71,8 @@ HomePage.propTypes = {
 	singularPrincipalKeyword: PropTypes.string,
 	categories: PropTypes.array,
 	products: PropTypes.array,
-	content: PropTypes.string
+	content: PropTypes.string,
+	tag: PropTypes.string
 }
 
 HomePage.defaultProps = {

@@ -12,7 +12,8 @@ const Goto = ({location}) => {
     useEffect(() => {
         const searchSplitted = search.split('?url=');
         if(searchSplitted.length > 1) {
-            setUrlToRedirect(searchSplitted[1]);
+            const url = searchSplitted[1].split('&tag=')
+            setUrlToRedirect(`${url[0]}/ref=as_li_ss_tl?ie=UTF8&linkCode=ll1&${url[1]}`);
         } else {
             window.location = '/';
         }

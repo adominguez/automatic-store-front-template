@@ -59,7 +59,7 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
         keyword={page.name} /> : null}
         {page.useHomePage ?
           (
-            <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} />
+            <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} />
           ) :
             entity === 'keywords' ? (<KeywordPage products={products} />) : (
               <>

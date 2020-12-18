@@ -6,7 +6,7 @@ import {calculateCheaperProducts} from '../utils/utils';
 import FeatureProduct from "./feature-product";
 import EntitiesList from "./entities-list";
 
-const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image}) => {
+const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag}) => {
 	const {firstContent = {}, secondContent = {}, thirdContent = {}, fourthContent = {}} = content;
 
 	const calculateImage = () => {
@@ -30,7 +30,7 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 			{
 				products.length > 1 &&
 				<div className="mb-12">
-					{products && products.length && <EntitiesList entities={products} showAsProducts dummyImage={image} relativePath />}
+					{products && products.length && <EntitiesList entities={products} showAsProducts dummyImage={image} relativePath tag={tag} />}
 				</div>
 			}
 			{
@@ -42,7 +42,7 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 			{
 				!!productsToCompare.length &&
 					<div className="mb-12">
-						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} relativePath />
+						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} relativePath tag={tag} />
 					</div>
 			}
 			{
@@ -60,7 +60,7 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 						<div className="mb-12">
 							{
 								bestProducts.map((product, index) => (
-									<FeatureProduct key={`best-product-${index}`} product={product} useAction relativePath />
+									<FeatureProduct key={`best-product-${index}`} product={product} useAction relativePath tag={tag} />
 								))
 							}
 						</div>
@@ -99,11 +99,21 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 }
 
 CategoryPage.propTypes = {
-	content: PropTypes.object
+	content: PropTypes.object,
+	products: PropTypes.array,
+	categories: PropTypes.array,
+	id: PropTypes.string,
+	productsToCompare: PropTypes.array,
+	bestProducts: PropTypes.array,
+	interlinking: PropTypes.array,
+	image: PropTypes.object,
+	tag: PropTypes.string
 }
 
 CategoryPage.defaultProps = {
-	content: {}
+	content: {},
+	bestProducts: [],
+	interlinking: []
 }
 
 export default CategoryPage;
