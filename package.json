@@ -26,10 +26,10 @@
     "react-router": "^5.2.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
-    "tailwindcss-truncate-multiline": "^1.0.3"
+    "tailwindcss-truncate-multiline": "^1.0.3",
+    "gatsby-plugin-postcss": "^3.3.0"
   },
   "devDependencies": {
-    "gatsby-plugin-postcss": "^3.3.0",
     "postcss": "^8.1.14",
     "postcss-focus": "^5.0.1",
     "prettier": "2.1.2",
