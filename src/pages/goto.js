@@ -7,7 +7,7 @@ import TextBlock from "../components/text-block";
 const Goto = ({location}) => {
     const [urlToRedirect, setUrlToRedirect] = useState(null);
     const { search, host } = location;
-    const [count, setCount] = useState(5);
+    const [count, setCount] = useState(4);
 
     useEffect(() => {
         const searchSplitted = search.split('?url=');
