@@ -46,7 +46,8 @@
     "start": "npm run develop",
     "serve": "gatsby clean && rm -rf public && gatsby build && gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "npm i && gatsby build"
   },
   "engines": {
     "node": "12.x"

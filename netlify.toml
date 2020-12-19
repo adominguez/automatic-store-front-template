@@ -6,4 +6,4 @@ build
 [
 dev
 ]
-	command = "gatsby develop"
+	command = "npm run deploy"
