@@ -5,9 +5,9 @@ const opts = {
   siteId: `siteToReplace`,
 }
 
-const get = ({query, url}) => axios.get(`https://automatic-web.herokuapp.com/${url}/${opts.userId}/${opts.siteId}${query ? '?' + query : ''}`);
+const get = ({query, url}) => axios.get(`https://us-central1-automatic-web-dashboard-back.cloudfunctions.net/app/${url}/${opts.userId}/${opts.siteId}${query ? '?' + query : ''}`);
 
-const getThirdServices = ({url, param}) => axios.get(`https://automatic-web.herokuapp.com/${url}/${opts.userId}/${param}`);
+const getThirdServices = ({url, param}) => axios.get(`https://us-central1-automatic-web-dashboard-back.cloudfunctions.net/app/${url}/${opts.userId}/${param}`);
 
 const getDataByEntity = async ({query, url}) => {
   return await new Promise(async (resolve) => {
