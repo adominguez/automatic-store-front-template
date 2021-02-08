@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 const opts = {
-  userId: `userToReplace`,
-  siteId: `siteToReplace`,
+  userId: `JBEqCPjH5HQUBNcmUAjDr8wDW8L2`,
+  siteId: `9y6m75tipe6`,
 }
 
 const get = ({query, url}) => axios.get(`https://us-central1-automatic-web-dashboard-back.cloudfunctions.net/app/${url}/${opts.userId}/${opts.siteId}${query ? '?' + query : ''}`);
