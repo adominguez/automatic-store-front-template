@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "automatic-store-front-template",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "automatic store template",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Alberto Dominguez Martin",
   "dependencies": {
     "autoprefixer": "^10.0.4",
     "axios": "^0.20.0",
