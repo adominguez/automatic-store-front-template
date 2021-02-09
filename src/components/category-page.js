@@ -5,6 +5,7 @@ import ComparisonProducts from './comparison-products'
 import {calculateCheaperProducts} from '../utils/utils';
 import FeatureProduct from "./feature-product";
 import EntitiesList from "./entities-list";
+import LoadVideo from "./load-video";
 
 const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag}) => {
 	const {firstContent = {}, secondContent = {}, thirdContent = {}, fourthContent = {}} = content;
@@ -17,6 +18,10 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 			}
 		});
 		return image;
+	}
+
+	const openVideo = () => {
+		debugger;
 	}
 	
 	return (
@@ -39,6 +44,9 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 					<TextBlock heading={secondContent.title} text={secondContent.content} headingSize={2} />
 				</div>
 			}
+			<div className="mb-12">
+				<LoadVideo video={{text: "Lorem ipsum dolor sit amet consectetur, adipiscing elit fringilla lacinia id, dictum et nisl diam. Dui porttitor class quisque orci cras taciti habitasse tincidunt, ut potenti enim leo magna maecenas fringilla fames, rutrum turpis litora scelerisque id cubilia senectus. Fusce cursus taciti erat mi suspendisse natoque, nullam est per class accumsan aliquam, ultricies tristique urna pretium aptent.", thumbnails: "https://i.ytimg.com/vi/CmZEJcDCBxM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAki4Hm3RZUR--mrk0qBKYTQ2ycQ"}} />
+			</div>
 			{
 				!!productsToCompare.length &&
 					<div className="mb-12">
