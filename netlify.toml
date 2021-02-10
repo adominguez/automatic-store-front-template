@@ -1,9 +1,0 @@
-[
-build
-]
-	command = "gatsby build"
-	publish = "public"
-[
-dev
-]
-	command = "npm run deploy"
