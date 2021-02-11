@@ -5,17 +5,9 @@ import { calculateCheaperProducts, isOdd } from '../utils/utils'
 import TextBlock from "./text-block";
 import ComparisonProducts from './comparison-products';
 import FeatureProduct from './feature-product';
+import LoadVideo from './load-video';
 
-const HomePage = ({categories, pluralPrincipalKeyword, singularPrincipalKeyword, products, interlinking, productsToCompare, bestProducts, tag}) => {
-
-const headingCategoryText = `Categorías de ${pluralPrincipalKeyword}`;
-const categoryText = `Si estás buscando un sitio en el que puedas encontrar <b>todo lo relacionado con ${pluralPrincipalKeyword}</b> estás en el sitio adecuado. Aquí cuentas con una gran variedad de categorías, en cada una de ellas encontrarás productos interesantes, échale un vistazo a toda nuestra web, y encuentra tu ${singularPrincipalKeyword}.`;
-
-const cheaperProductsHeading = `Los productos más baratos`
-const cheaperProductsText = `En este sitio podrás encontrar todo un <b>catálogo completo de ${pluralPrincipalKeyword}</b>, Hay infinidad de modelos y marcas, por lo que es natural que no sepas <b>que ${singularPrincipalKeyword} comprar</b> que mejor se adapte a tus necesidades, no te preocupes, Aquí podrás encontrar todo lo que necesitas saber para realizar la mejor elección.`
-
-const bestProductsHeading = `Los 10 mejores ${pluralPrincipalKeyword}`
-const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipalKeyword} que vas a encontrar actualmente en el mercado`
+const HomePage = ({categories, products, interlinking, productsToCompare, bestProducts, tag, content = {}, video}) => {
 
 	return (
 		<>
@@ -23,7 +15,7 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 				categories && categories.length && 
 				<>
 					<div className="py-12">
-						<TextBlock heading={headingCategoryText} text={categoryText} headingSize={2} />
+						<TextBlock heading={content.categories.title} text={content.categories.content} headingSize={2} />
 					</div>
 					<div className="mb-12">
 						<EntitiesList entities={categories} />
@@ -34,7 +26,7 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 				calculateCheaperProducts(products) && calculateCheaperProducts(products).length &&
 				<>
 					<div className="mb-12">
-						<TextBlock heading={cheaperProductsHeading} text={cheaperProductsText} headingSize={2} />
+						<TextBlock heading={content.price.title} text={content.price.content} headingSize={2} />
 					</div>
 					<div className="mb-12">
 						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts tag={tag} />
@@ -42,10 +34,16 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 				</>
 			}
 			{
+				content.video && content.video.content &&
+				<div className="mb-12">
+					<LoadVideo video={video} text={content.video.content} />
+				</div>
+			}
+			{
 				!!bestProducts.length &&
 					<>
 						<div className="mb-12">
-							<TextBlock heading={bestProductsHeading} text={bestProductsText} headingSize={2} />
+							<TextBlock heading={content.bestProducts.title} text={content.bestProducts.content} headingSize={2} />
 						</div>
 						<div className="mb-12">
 							{
@@ -56,6 +54,12 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 						</div>
 					</>
 			}
+			<div className="mb-12">
+				<TextBlock heading={content.whereBuy.title} text={content.whereBuy.content} headingSize={2} />
+			</div>
+			<div className="mb-12">
+				<TextBlock text={content.genericText.content} headingSize={2} />
+			</div>
 			{
 				!!productsToCompare.length &&
 					<div className="mb-12">
@@ -67,8 +71,6 @@ const bestProductsText = `Hemos preparado para tí los mejores ${pluralPrincipal
 }
 
 HomePage.propTypes = {
-	pluralPrincipalKeyword: PropTypes.string,
-	singularPrincipalKeyword: PropTypes.string,
 	categories: PropTypes.array,
 	products: PropTypes.array,
 	content: PropTypes.string,
@@ -76,8 +78,6 @@ HomePage.propTypes = {
 }
 
 HomePage.defaultProps = {
-	pluralPrincipalKeyword: 'los productos',
-	singularPrincipalKeyword: 'producto',
 	categories: [],
 	products: [],
 	content: ``

@@ -84,8 +84,8 @@ TextBlock.propTypes = {
 
 TextBlock.defaultProps = {
 	headingSize: 2,
-	text: `Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.`,
-	heading: `Pitchfork Kickstarter Taxidermy`,
+	text: null,
+	heading: null,
 	image: null,
 	preHeading: null
 }

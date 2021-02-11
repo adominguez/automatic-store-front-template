@@ -23,8 +23,6 @@ const FeatureProduct = ({ product, rowReverse, relativePath, useAction }) => {
 
 	const isProductData = () => product.productData && !!product.productData.length;
 
-	console.log(product)
-
 	return (
 		<div className="w-full p-4">
 			<div className={`flex flex-col flex-wrap p-2 bg-white border border-gray-300 hover:border-primary-500 rounded-lg ${rowReverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>

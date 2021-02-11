@@ -8,7 +8,7 @@ import KeywordPage from '../components/keyword-page';
 import { getBestProducts } from '../utils/utils';
 import '../css/index.css';
 
-export default ({ pageContext: { page = {}, design, categories, products, tag, pluralPrincipalKeyword, singularPrincipalKeyword, genrePrincipalKeyword, interlinking = [] }, pageContext }) => {
+export default ({ pageContext: { page = {}, design, categories, products, tag, interlinking = [] } }) => {
   const { useAmazonSearch } = design;
   const { content = {}, entity, productsToCompare = [], image } = page;
 
@@ -60,7 +60,7 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, p
         keyword={page.name} /> : null}
         {page.useHomePage ?
           (
-            <HomePage categories={categories} pluralPrincipalKeyword={pluralPrincipalKeyword} singularPrincipalKeyword={singularPrincipalKeyword} products={products} genrePrincipalKeyword={genrePrincipalKeyword} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} />
+            <HomePage content={content} categories={categories} products={products} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} />
           ) :
             entity === 'keywords' ? (<KeywordPage products={products} />) : (
               <>

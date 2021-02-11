@@ -7,8 +7,8 @@ import FeatureProduct from "./feature-product";
 import EntitiesList from "./entities-list";
 import LoadVideo from "./load-video";
 
-const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag}) => {
-	const {firstContent = {}, secondContent = {}, thirdContent = {}, fourthContent = {}} = content;
+const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag, video}) => {
+	const {comparisonProducts = {}, featureProducts = {}, genericSpintax = {}, linkCategories = {}, productsCatalog = {}, video: videoBlock = {}} = content;
 
 	const calculateImage = () => {
 		let image = null;
@@ -27,9 +27,9 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 	return (
 		<>
 			{
-				firstContent.title && firstContent.content && 
+				productsCatalog.title && productsCatalog.content && 
 				<div className="py-12">
-					<TextBlock heading={firstContent.title} text={firstContent.content} headingSize={2} image={calculateImage()} />
+					<TextBlock heading={productsCatalog.title} text={productsCatalog.content} headingSize={2} image={calculateImage()} />
 				</div>
 			}
 			{
@@ -39,32 +39,33 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 				</div>
 			}
 			{
-				secondContent.title && secondContent.content &&
+				videoBlock.content &&
 				<div className="mb-12">
-					<TextBlock heading={secondContent.title} text={secondContent.content} headingSize={2} />
+					<LoadVideo video={video} text={videoBlock.content} />
 				</div>
 			}
-			<div className="mb-12">
-				<LoadVideo video={{text: "Lorem ipsum dolor sit amet consectetur, adipiscing elit fringilla lacinia id, dictum et nisl diam. Dui porttitor class quisque orci cras taciti habitasse tincidunt, ut potenti enim leo magna maecenas fringilla fames, rutrum turpis litora scelerisque id cubilia senectus. Fusce cursus taciti erat mi suspendisse natoque, nullam est per class accumsan aliquam, ultricies tristique urna pretium aptent.", thumbnails: "https://i.ytimg.com/vi/CmZEJcDCBxM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAki4Hm3RZUR--mrk0qBKYTQ2ycQ"}} />
-			</div>
 			{
 				!!productsToCompare.length &&
-					<div className="mb-12">
-						<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} relativePath tag={tag} />
-					</div>
-			}
-			{
-				thirdContent.title && thirdContent.content && 
-				<div className="mb-12">
-					<TextBlock heading={thirdContent.title} text={thirdContent.content} headingSize={2} />
-				</div>
+					<>
+						{
+							comparisonProducts.title && comparisonProducts.content &&
+							<div className="mb-12">
+								<TextBlock heading={comparisonProducts.title} text={comparisonProducts.content} headingSize={2} />
+							</div>
+						}
+						<div className="mb-12">
+							<ComparisonProducts products={calculateCheaperProducts(productsToCompare, productsToCompare.length)} relativePath tag={tag} />
+						</div>
+					</>
 			}
 			{
 				!!bestProducts.length &&
 					<>
-						<div className="mb-12">
-							<TextBlock heading={`Título de feature product`} text={`El mejor producto calidad precio`} headingSize={2} />
-						</div>
+						{featureProducts.title && featureProducts.content &&
+							<div className="mb-12">
+								<TextBlock heading={featureProducts.title} text={featureProducts.content} headingSize={2} />
+							</div>
+						}
 						<div className="mb-12">
 							{
 								bestProducts.map((product, index) => (
@@ -75,17 +76,14 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 					</>
 			}
 			{
-				fourthContent.title && fourthContent.content &&
+				genericSpintax.content &&
 					<div className="mb-12">
-						<TextBlock heading={fourthContent.title} text={fourthContent.content} headingSize={2} />
+						<TextBlock text={genericSpintax.content} headingSize={2} />
 					</div>
 			}
 			{
 				!!interlinking.length &&
 					<>
-						<div className="mb-12">
-							<TextBlock heading={`Más entradas de la categoría`} text={`Contenido de las keywords de interlinking`} headingSize={2} />
-						</div>
 						<div className="mb-12">
 							<EntitiesList entities={interlinking} relativePath inverseClass dummyImage={image} />
 						</div>
@@ -95,7 +93,7 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 				!!categories.filter(category => category.id !== id).length &&
 					<>
 						<div className="mb-12">
-							<TextBlock heading={`Título para categoría`} text={`Contenido de Categoría`} headingSize={2} />
+							<TextBlock heading={linkCategories.title} text={linkCategories.content} headingSize={2} />
 						</div>
 						<div className="mb-12">
 							<EntitiesList entities={categories.filter(category => category.id !== id)} relativePath dummyImage={image} />
