@@ -4,11 +4,12 @@ import SEO from "../components/seo";
 import AmazonSearch from "../components/amazon-search";
 import HomePage from '../components/home-page';
 import CategoryPage from '../components/category-page';
+import CookieConsent from "react-cookie-consent";
 import { getBestProducts } from '../utils/utils';
 import '../css/index.css';
 
 export default (data) => {
-  const { pageContext: { page = {}, design, categories, products, video, tag, interlinking = [] } } = data;
+  const { pageContext: { page = {}, design, categories, products, video, tag, interlinking = [], cookies } } = data;
   const { useAmazonSearch } = design;
   const { content = {}, productsToCompare = [], image } = page;
 
@@ -46,6 +47,8 @@ export default (data) => {
 
   const getInitialMaxProductsPrice = () => (parseInt(Math.max(...productsPriceValues()) + 1));
 
+  console.log({data})
+
   return (
     <Layout>
       <SEO title={page.title} description={page.description} />
@@ -63,6 +66,13 @@ export default (data) => {
           :
           <CategoryPage content={content} name={page.name} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} video={video} />
         }
+        <CookieConsent
+          location="bottom"
+          buttonText={cookies.button}
+          declineButtonText="Declinar"
+          cookieName="google-analytics">
+          {cookies.content}
+        </CookieConsent>
     </Layout>
   )
 };

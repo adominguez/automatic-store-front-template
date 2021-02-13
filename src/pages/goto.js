@@ -40,7 +40,7 @@ const Goto = ({location}) => {
 
     return (
         <Layout>
-            <SEO title="redirecting to" />
+            <SEO title={`Redireccionando en ${count}`} robots="noindex, nofollow" />
             <div className="mb-12">
                 <TextBlock heading={`Estás siendo redireccionado fuera del sitio`} text={text} headingSize={1} />
                 <p className="px-4 text-xl text-textColor-500 ">Redireccionado en {count}</p>
