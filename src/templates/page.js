@@ -10,7 +10,7 @@ import '../css/index.css';
 export default (data) => {
   const { pageContext: { page = {}, design, categories, products, video, tag, interlinking = [] } } = data;
   const { useAmazonSearch } = design;
-  const { content = {}, entity, productsToCompare = [], image } = page;
+  const { content = {}, productsToCompare = [], image } = page;
 
   const productsPriceValues = () => {
     const productsFiltered = []
