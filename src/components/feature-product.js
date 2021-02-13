@@ -71,7 +71,7 @@ const FeatureProduct = ({ product, rowReverse, relativePath, useAction, tag }) =
 						imageSelected &&
 							<div className="items-center flex-grow overflow-hidden centered-flex max-h-96">
 								<picture>
-									<a href={`../goto?url=${product.link}&tag=${tag}`} target="_blank" >
+									<a href={`../goto?url=${product.link}&tag=${tag}`} target="_blank" rel="noreferrer" >
 										<img loading="lazy" className="flex-shrink-0 object-cover object-center" src={`${imageSelected.src}._AC_SY500_.${imageSelected.extension}`} alt={product.name} />
 									</a>
 								</picture>
