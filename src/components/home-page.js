@@ -73,7 +73,7 @@ const HomePage = ({categories, products, interlinking, productsToCompare, bestPr
 HomePage.propTypes = {
 	categories: PropTypes.array,
 	products: PropTypes.array,
-	content: PropTypes.string,
+	content: PropTypes.object,
 	tag: PropTypes.string
 }
 

@@ -3,13 +3,13 @@ import React, {useState, useEffect} from "react";
 import ProductActionPrice from "./product-action-price";
 import ProductsStars from "./product-stars";
 
-const FeatureProduct = ({ product, rowReverse, relativePath, useAction }) => {
+const FeatureProduct = ({ product, rowReverse, relativePath, useAction, tag }) => {
 	const [tabSelected, setTabSelected] = useState('description');
 	const [imageSelected, setImageSelected] = useState(null);
 
 	useEffect(()=> {
 		if(product.featureImage && product.featureImage.src && !imageSelected) {
-			setImageSelected(product.featureImage)
+			setImageSelected(product.featureImage, imageSelected)
 		}
 	})
 
@@ -71,7 +71,9 @@ const FeatureProduct = ({ product, rowReverse, relativePath, useAction }) => {
 						imageSelected &&
 							<div className="items-center flex-grow overflow-hidden centered-flex max-h-96">
 								<picture>
-									<img loading="lazy" className="flex-shrink-0 object-cover object-center" src={`${imageSelected.src}._AC_SY500_.${imageSelected.extension}`} alt={product.name} />
+									<a href={`../goto?url=${product.link}&tag=${tag}`} target="_blank" >
+										<img loading="lazy" className="flex-shrink-0 object-cover object-center" src={`${imageSelected.src}._AC_SY500_.${imageSelected.extension}`} alt={product.name} />
+									</a>
 								</picture>
 							</div>
 					}
@@ -81,7 +83,9 @@ const FeatureProduct = ({ product, rowReverse, relativePath, useAction }) => {
 							<div className="flex-wrap mt-4 space-x-3 principal-container">
 								{
 									product.images.map((image, index) => (
-										<img key={`image-${index}`} loading="lazy" className="flex-shrink-0 object-cover object-center cursor-pointer focus:border-secondary-100 hover:border-secondary-100" src={`${image.src}._AC_SY50_.${image.extension}`} alt={product.name} onClick={() => setImageSelected(image)} />
+										<button className="border-2 border-transparent hover:border-primary-500 focus:border-secondary-500 focus:outline-none" onClick={() => setImageSelected(image)} key={`image-${index}`}>
+											<img loading="lazy" className="flex-shrink-0 object-cover object-center cursor-pointer focus:border-secondary-100 hover:border-secondary-100" src={`${image.src}._AC_SY50_.${image.extension}`} alt={product.name} />
+										</button>
 									))
 								}
 							</div>

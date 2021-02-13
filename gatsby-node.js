@@ -27,10 +27,8 @@ exports.createPages = async ({
   actions: { createPage }}) => {
   const urlSite = 'site';
   const urlTagAmazon = 'amazon-tag'
-  const urlTagAnalytics = 'analytics-tag'
-  const {colors, design, categories, keywords, amazon, analytics, genrePrincipalKeyword} = await getDataByEntity({url: urlSite});
+  const {design, categories, keywords, amazon} = await getDataByEntity({url: urlSite});
   const { tag } = await getThirdServicesByEntity({url: urlTagAmazon, param: amazon });
-  const { analyticId } = await getThirdServicesByEntity({url: urlTagAnalytics, param: analytics });
   const allPages = await categories.concat(keywords);
   // Create a page for each page.
   await Promise.all(allPages.map(async page => {
@@ -52,13 +50,10 @@ exports.createPages = async ({
       component: require.resolve('./src/templates/page.js'),
       context: {
         page,
-        colors,
         design,
         categories,
         products,
         tag,
-        genrePrincipalKeyword,
-        analyticId,
         interlinking,
         video
       }

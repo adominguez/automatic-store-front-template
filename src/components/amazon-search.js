@@ -3,8 +3,8 @@ import React, { useLayoutEffect }  from "react";
 import $ from 'jquery';
 import TransformText from './transform-text';
 
-const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, brands, min, max, showBrands, initialMin, initialMax, currency, tagAffiliate, country, relativePath}) => {
-
+const AmazonSearch = (props) => {
+    const {keyword, buttonText, amazonSearchText, brands, showBrands, tagAffiliate, country } = props;
     const goToAmazon = () => {
         const firstPrice = `p_36%3A${$("#slider-range").slider("values", 0)}00-`;
         const secondPrice = `${$("#slider-range").slider("values", 1)}00`;
@@ -18,6 +18,7 @@ const AmazonSearch = ({keyword, buttonText, searchBoxImage, amazonSearchText, br
     }
 
     useLayoutEffect(() => {
+        const { initialMin, initialMax, currency, min, max} = props;
         $("#amount").val(initialMin + currency + " - " + initialMax + currency);
         if (typeof navigator !== `undefined`) {
             require("jquery-ui/ui/widgets/slider")

@@ -4,9 +4,18 @@ import Parser from 'html-react-parser';
 
 const TextBlock = ({headingSize, heading, text, image = {}, preHeading}) => {	
 
+	const checkText = (text) => {
+		return text.includes('<p>')
+	}
+
 	const renderText = () => (
 		text && text.length &&
+		!checkText(text) ? 
 		<p className={`w-full leading-relaxed text-textColor-500 px-2 ${text.length < 300 ? 'lg:w-1/2' : ''} md:px-5`}>{Parser(text)}</p>
+		: 
+		<div className={`w-full leading-relaxed text-textColor-500 px-2 ${text.length < 300 ? 'lg:w-1/2' : ''} md:px-5`}>
+			{Parser(text)}
+		</div>
 	)
 
 	const renderHeading = () => (

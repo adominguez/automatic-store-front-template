@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import ProductsStars from "./product-stars";
-import { Link } from "gatsby";
 import { isOdd } from "../utils/utils";
 
 const ComparisonProducts = ({ products, informationButtonText, relativePath, tag }) => {

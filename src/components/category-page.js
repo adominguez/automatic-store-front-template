@@ -7,7 +7,7 @@ import FeatureProduct from "./feature-product";
 import EntitiesList from "./entities-list";
 import LoadVideo from "./load-video";
 
-const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag, video}) => {
+const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag, video, name}) => {
 	const {comparisonProducts = {}, featureProducts = {}, genericSpintax = {}, linkCategories = {}, productsCatalog = {}, video: videoBlock = {}} = content;
 
 	const calculateImage = () => {
@@ -18,10 +18,6 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 			}
 		});
 		return image;
-	}
-
-	const openVideo = () => {
-		debugger;
 	}
 	
 	return (
@@ -82,10 +78,10 @@ const CategoryPage = ({content, products, categories, id, productsToCompare, bes
 					</div>
 			}
 			{
-				!!interlinking.length &&
+				!!interlinking.filter(item => !item.useHomePage && item.name !== name).length &&
 					<>
 						<div className="mb-12">
-							<EntitiesList entities={interlinking} relativePath inverseClass dummyImage={image} />
+							<EntitiesList entities={interlinking.filter(item => !item.useHomePage && item.name !== name)} relativePath inverseClass dummyImage={image} />
 						</div>
 					</>
 			}

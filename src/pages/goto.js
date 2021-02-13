@@ -6,10 +6,11 @@ import TextBlock from "../components/text-block";
 
 const Goto = ({location}) => {
     const [urlToRedirect, setUrlToRedirect] = useState(null);
-    const { search, host } = location;
     const [count, setCount] = useState(4);
-
+    const { host } = location;
+    
     useEffect(() => {
+        const { search } = location;
         const searchSplitted = search.split('?url=');
         if(searchSplitted.length > 1) {
             let url = ''

@@ -62,9 +62,9 @@ const Layout = ({ children }) => {
 
   return (
     <div className={`flex flex-col h-screen ${useTransparentContentBackground ? 'bg-transparent' : 'bg-backgroundSite'}`}>
-      <Header logoPositionValue={logoPositionValue} device={device} useHeaderWhite={useHeaderWhite} siteTitle={siteName} useLogo={useLogo} siteLogo={siteLogo} />
+      <Header logoPositionValue={logoPositionValue} useHeaderWhite={useHeaderWhite} siteTitle={siteName} useLogo={useLogo} siteLogo={siteLogo} />
       {
-        useMenu ? <Nav device={device} color={secondaryColor} templateWidthValue={templateWidthValue} useMenuWidth={useMenuWidth} /> : null
+        useMenu ? <Nav color={secondaryColor} templateWidthValue={templateWidthValue} useMenuWidth={useMenuWidth} /> : null
       }
       <main className={`overflow-y-auto`}>
         <div className={`py-4 principal-container`}>

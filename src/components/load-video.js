@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useState} from "react";
 
 const LoadVideo = ({ video, text }) => {
+    const [showVideo, setVideoSelected] = useState(false);
 
-    const getImageVideo = () => video.thumbnails;
+    const getImageVideo = () => video.thumbnails.high.url;
 
 	return (
         <div className="flex flex-col items-center md:flex-row">
@@ -12,13 +13,32 @@ const LoadVideo = ({ video, text }) => {
                     {text}
                 </p>
             </div>
-            <div className="relative w-5/6 mt-4 lg:max-w-lg lg:w-full md:w-1/2">
-                <span className="play-video-button"></span>
-                <div className="absolute z-10 w-full h-full bg-gray-700 rounded-lg opacity-0 cursor-pointer hover:opacity-50">
-                </div>
-                <picture className="relative">
-                    <img loading="lazy" className="flex-shrink-0 object-cover object-center w-full rounded-lg" alt={video.title} src={getImageVideo()} />
-                </picture>
+            <div className="relative flex justify-center w-5/6 mt-4 lg:max-w-lg lg:w-full md:w-1/2">
+                {
+                    !showVideo ? 
+                        <button className="relative border-4 border-transparent rounded-xl hover:border-secondary-300 focus:border-primary-500 focus:outline-none" onClick={() => setVideoSelected(true)}>
+                            <span className="play-video-button"></span>
+                            <picture className="relative">
+                                <img loading="lazy" className="flex-shrink-0 object-cover object-center w-full rounded-lg" alt={video.title} src={getImageVideo()} />
+                            </picture>
+                            <div className="absolute bottom-0 w-full p-4 text-white bg-secondary-300 rounded-b-md">
+                                {video.title}
+                            </div>
+                        </button>
+                    :
+                    <iframe
+                        src={`https://www.youtube.com/embed/${video.videoId}`}
+                        title={video.title}
+                        width="560"
+                        height="315"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        frameBorder="0"
+                        webkitallowfullscreen="true"
+                        mozallowfullscreen="true"
+                        allowFullScreen
+                        className="rounded-lg"
+                    />
+                }
             </div>
         </div>
 	)

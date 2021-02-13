@@ -4,11 +4,11 @@ import SEO from "../components/seo";
 import AmazonSearch from "../components/amazon-search";
 import HomePage from '../components/home-page';
 import CategoryPage from '../components/category-page';
-import KeywordPage from '../components/keyword-page';
 import { getBestProducts } from '../utils/utils';
 import '../css/index.css';
 
-export default ({ pageContext: { page = {}, design, categories, products, tag, interlinking = [] } }) => {
+export default (data) => {
+  const { pageContext: { page = {}, design, categories, products, video, tag, interlinking = [] } } = data;
   const { useAmazonSearch } = design;
   const { content = {}, entity, productsToCompare = [], image } = page;
 
@@ -59,14 +59,9 @@ export default ({ pageContext: { page = {}, design, categories, products, tag, i
         relativePath={!page.useHomePage}
         keyword={page.name} /> : null}
         {page.useHomePage ?
-          (
-            <HomePage content={content} categories={categories} products={products} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} />
-          ) :
-            entity === 'keywords' ? (<KeywordPage products={products} />) : (
-              <>
-                <CategoryPage content={content} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} />
-              </>
-            )
+          <HomePage content={content} categories={categories} products={products} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} video={video} />
+          :
+          <CategoryPage content={content} name={page.name} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} video={video} />
         }
     </Layout>
   )
