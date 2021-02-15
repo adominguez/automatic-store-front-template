@@ -52,7 +52,7 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap.xml`,
-        exclude: [`/cookies`, `goto`]
+        exclude: [`/cookies`, `/goto`]
       }
     },
     {
