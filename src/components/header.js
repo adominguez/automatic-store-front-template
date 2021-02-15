@@ -13,7 +13,7 @@ const Header = ({ siteTitle, logoPositionValue, useHeaderWhite, useLogo, siteLog
             className={`leading-none text-2xl px-3 sm:block sm:text-center no-underline outline-none ${useHeaderWhite ? 'text-primary-500' : 'text-white'} hover:text-secondary-500 focus:text-secondary-500`}
           >
             {
-              useLogo && siteLogo.lenght ? <img loading="lazy" src={siteLogo} alt={siteTitle} /> : <TransformText uppercaseFirstLetter text={siteTitle} />
+              useLogo && siteLogo.length ? <img loading="lazy" src="../../logo.png" alt={siteTitle} /> : <TransformText uppercaseFirstLetter text={siteTitle} />
             }
           </Link>
       </div>
