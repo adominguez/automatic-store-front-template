@@ -12,8 +12,8 @@ const SearchInput = () => {
     setKeyword(value);
     setFilteredResults(filteredResults);
     if(keyCode === 40 && filteredResults.length && keyword.length) {
-      const nextSibling = event.currentTarget.nextElementSibling.children[0].children[0].children[0];
-      nextSibling.focus()
+      const nextSibling = event.currentTarget.parentElement.nextElementSibling.children[0].children[0].children[0];
+      nextSibling.focus();
     }
   }
 
