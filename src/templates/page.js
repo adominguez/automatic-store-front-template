@@ -67,6 +67,7 @@ export default (data) => {
           <CategoryPage content={content} name={page.name} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} video={video} />
         }
         <CookieConsent
+          enableDeclineButton
           location="bottom"
           buttonText={cookies.button}
           declineButtonText="Declinar"

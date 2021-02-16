@@ -13,6 +13,7 @@ export default ({ pageContext: { cookies } }) => {
           <TextBlock heading={cookies.title} text={cookies.text} headingSize={1} />
         </div>
         <CookieConsent
+          enableDeclineButton
           location="bottom"
           buttonText={cookies.button}
           declineButtonText="Declinar"
