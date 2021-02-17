@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 
 import Header from "./header";
 import Nav from "./nav";
@@ -52,8 +53,13 @@ const Layout = ({ children }) => {
           </div>
         </section>
       </main>
-      <footer className="box-border flex justify-center w-full p-4 text-white bg-secondary-500">
-        © {new Date().getFullYear()}, {siteName}
+      <footer className="box-border flex flex-col items-center justify-center w-full p-4 text-white bg-secondary-500">
+        <div className="flex space-x-3">
+          <Link to="/" className="text-primary-300 hover:text-primary-600 focus:text-primary-600">Inicio</Link>
+          <Link to="/legal" className="text-primary-300 hover:text-primary-600 focus:text-primary-600">Aviso legal</Link>
+          <Link to="/cookies" className="text-primary-300 hover:text-primary-600 focus:text-primary-600">Cookies</Link>
+        </div>
+        <div className="mt-3">© {new Date().getFullYear()}, {siteName}</div>
       </footer>
     </div>
   )
