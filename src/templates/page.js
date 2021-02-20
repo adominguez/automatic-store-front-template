@@ -4,7 +4,6 @@ import SEO from "../components/seo";
 import AmazonSearch from "../components/amazon-search";
 import HomePage from '../components/home-page';
 import CategoryPage from '../components/category-page';
-import CookieConsent from "react-cookie-consent";
 import { getBestProducts } from '../utils/utils';
 import '../css/index.css';
 
@@ -50,7 +49,7 @@ export default (data) => {
   console.log({data})
 
   return (
-    <Layout>
+    <Layout cookies={cookies}>
       <SEO title={page.title} description={page.description} />
       {/* <h1 className="page-title">{page.name.charAt(0).toUpperCase() + page.name.slice(1)}</h1> */}
       {useAmazonSearch ? <AmazonSearch
@@ -66,14 +65,6 @@ export default (data) => {
           :
           <CategoryPage content={content} name={page.name} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} video={video} />
         }
-        <CookieConsent
-          enableDeclineButton
-          location="bottom"
-          buttonText={cookies.button}
-          declineButtonText="Declinar"
-          cookieName="google-analytics">
-          {cookies.content}
-        </CookieConsent>
     </Layout>
   )
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import TextBlock from "../components/text-block";
-import CookieConsent from "react-cookie-consent";
 import '../css/index.css';
 
 const content = {
@@ -22,7 +21,7 @@ const content = {
 
 export default ({ pageContext: { cookies } }) => {
   return (
-    <Layout>
+    <Layout cookies={cookies}>
       <SEO title="aviso legal" robots="noindex, nofollow" />
         <div className="mb-12">
           <TextBlock heading={content.identifySite.title} text={content.identifySite.content} headingSize={1} />
@@ -33,14 +32,6 @@ export default ({ pageContext: { cookies } }) => {
         <div className="mb-12">
           <TextBlock heading={content.use.title} text={content.use.content} headingSize={1} />
         </div>
-        <CookieConsent
-            enableDeclineButton
-            location="bottom"
-            buttonText={cookies.button}
-            declineButtonText="Declinar"
-            cookieName="google-analytics">
-            {cookies.content}
-        </CookieConsent>
     </Layout>
   )
 };

@@ -20,16 +20,6 @@
     z-index: 10;
 }
 
-.w-1\/3 {
-    width: 33.333333%;
-}
-.w-1\/5 {
-    width: 20%;
-}
-.w-1\/6 {
-    width: 16.666666%;
-}
-
 .slider-range .ui-state-default:focus,
 .slider-range .ui-state-default:hover {
     @apply bg-secondary-500;

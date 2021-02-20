@@ -6,8 +6,9 @@ import { Link } from "gatsby";
 import Header from "./header";
 import Nav from "./nav";
 import SearchInput from "./search-input.js"
+import CookieConsent from "react-cookie-consent";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, cookies }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -61,6 +62,17 @@ const Layout = ({ children }) => {
         </div>
         <div className="mt-3">© {new Date().getFullYear()}, {siteName}</div>
       </footer>
+      {
+        cookies &&
+          <CookieConsent
+            enableDeclineButton
+            location="bottom"
+            buttonText={cookies.button}
+            declineButtonText="Declinar"
+            cookieName="google-analytics">
+            {cookies.content}
+          </CookieConsent>
+      }
     </div>
   )
 }

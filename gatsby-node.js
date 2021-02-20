@@ -55,7 +55,8 @@ exports.createPages = async ({
         products,
         tag,
         interlinking,
-        video
+        video,
+        cookies
       }
     });
   }));
@@ -65,12 +66,13 @@ exports.createPages = async ({
     context: {
       cookies
     }
-  })
+  });
   await createPage({
     path: 'legal',
     component: require.resolve('./src/templates/legal.js'),
     context: {
-      legal
+      legal,
+      cookies
     }
-  })
+  });
 };
