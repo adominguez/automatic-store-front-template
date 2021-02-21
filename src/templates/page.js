@@ -46,8 +46,6 @@ export default (data) => {
 
   const getInitialMaxProductsPrice = () => (parseInt(Math.max(...productsPriceValues()) + 1));
 
-  console.log({data})
-
   return (
     <Layout cookies={cookies}>
       <SEO title={page.title} description={page.description} />
@@ -61,7 +59,7 @@ export default (data) => {
         relativePath={!page.useHomePage}
         keyword={page.name} /> : null}
         {page.useHomePage ?
-          <HomePage content={content} categories={categories} products={products} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} video={video} />
+          <HomePage content={content} categories={categories} products={products} image={image} productsToCompare={productsToCompare} interlinking={interlinking} bestProducts={getBestProducts(products, 10)} tag={tag} video={video} />
           :
           <CategoryPage content={content} name={page.name} products={products} tag={tag} image={image} categories={categories} id={page.id} productsToCompare={productsToCompare} bestProducts={getBestProducts(products)} interlinking={interlinking} video={video} />
         }

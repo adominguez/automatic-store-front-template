@@ -7,7 +7,7 @@ import FeatureProduct from "./feature-product";
 import EntitiesList from "./entities-list";
 import LoadVideo from "./load-video";
 
-const CategoryPage = ({content, products, categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag, video, name}) => {
+const CategoryPage = ({content, products = [], categories, id, productsToCompare, bestProducts = [], interlinking = [], image, tag, video, name}) => {
 	const {comparisonProducts = {}, featureProducts = {}, genericSpintax = {}, linkCategories = {}, productsCatalog = {}, video: videoBlock = {}} = content;
 
 	const calculateImage = () => {
