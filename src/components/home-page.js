@@ -28,7 +28,7 @@ const HomePage = ({categories, products = [], interlinking, productsToCompare, b
 						<TextBlock heading={content.categories.title} text={content.categories.content} headingSize={2} />
 					</div>
 					<div className="mb-12">
-						<EntitiesList entities={categories} dummyImage={image} />
+						<EntitiesList entities={categories} dummyImage={image || {extension: 'png', src: '../../dummy-image'}} />
 					</div>
 				</>
         	)}
@@ -39,7 +39,7 @@ const HomePage = ({categories, products = [], interlinking, productsToCompare, b
 						<TextBlock heading={content.price.title} text={content.price.content} headingSize={2} />
 					</div>
 					<div className="mb-12">
-						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts tag={tag} dummyImage={image} />
+						<EntitiesList entities={calculateCheaperProducts(products)} showAsProducts tag={tag} dummyImage={image || {extension: 'png', src: '../../dummy-image'}} />
 					</div>
 				</>
 			}

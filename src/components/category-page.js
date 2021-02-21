@@ -31,7 +31,7 @@ const CategoryPage = ({content, products = [], categories, id, productsToCompare
 			{
 				products.length > 1 &&
 				<div className="mb-12">
-					{products && products.length && <EntitiesList entities={products} showAsProducts dummyImage={image} relativePath tag={tag} />}
+					{products && products.length && <EntitiesList entities={products} showAsProducts dummyImage={image || {extension: 'png', src: '../../dummy-image'}} relativePath tag={tag} />}
 				</div>
 			}
 			{
@@ -81,7 +81,7 @@ const CategoryPage = ({content, products = [], categories, id, productsToCompare
 				!!interlinking.filter(item => !item.useHomePage && item.name !== name).length &&
 					<>
 						<div className="mb-12">
-							<EntitiesList entities={interlinking.filter(item => !item.useHomePage && item.name !== name)} relativePath inverseClass dummyImage={image} />
+							<EntitiesList entities={interlinking.filter(item => !item.useHomePage && item.name !== name)} relativePath inverseClass dummyImage={image || {extension: 'png', src: '../../dummy-image'}} />
 						</div>
 					</>
 			}
@@ -92,7 +92,7 @@ const CategoryPage = ({content, products = [], categories, id, productsToCompare
 							<TextBlock heading={linkCategories.title} text={linkCategories.content} headingSize={2} />
 						</div>
 						<div className="mb-12">
-							<EntitiesList entities={categories.filter(category => category.id !== id)} relativePath dummyImage={image} />
+							<EntitiesList entities={categories.filter(category => category.id !== id)} relativePath dummyImage={image || {extension: 'png', src: '../../dummy-image'}} />
 						</div>
 					</>
 			}

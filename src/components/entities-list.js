@@ -4,7 +4,7 @@ import React from "react";
 import ProductActionPrice from './product-action-price';
 import TransformText from '../components/transform-text';
 
-const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, numberOfEntities, dummyImage, tag}) => {
+const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, numberOfEntities, dummyImage = {}, tag}) => {
 
 	const setImageInformation = (entity, type) => {
 		if(showAsProducts) {
