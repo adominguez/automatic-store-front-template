@@ -52,9 +52,13 @@ const HomePage = ({categories, products = [], interlinking, productsToCompare, b
 			{
 				!!bestProducts.length &&
 					<>
-						<div className="mb-12">
-							<TextBlock heading={content.bestProducts.title} text={content.bestProducts.content} headingSize={2} />
-						</div>
+						{
+							content.bestProducts ? 
+								<div className="mb-12">
+									<TextBlock heading={content.bestProducts.title} text={content.bestProducts.content} headingSize={2} />
+								</div>
+							: null
+						}
 						<div className="mb-12">
 							{
 								bestProducts.map((product, index) => (
