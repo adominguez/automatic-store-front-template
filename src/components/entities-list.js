@@ -39,7 +39,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 								<h3 className={`text-lg font-medium ${inverseClass ? 'text-primary-500' : 'text-secondary-500'} title-font truncate-2-lines`} title={entity.name}><TransformText uppercaseFirstLetter text={entity.name}/></h3>
 								{
 									showAsProducts ?
-									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} /></div>
+									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} tag={tag} /></div>
 									: <p className="text-base leading-relaxed text-textColor-500 truncate-3-lines"><TransformText uppercaseFirstLetter text={entity.description}/></p>
 								}
 							</div>
@@ -57,7 +57,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 								<h3 className={`text-lg font-medium ${inverseClass ? 'text-primary-500' : 'text-secondary-500'} title-font truncate-2-lines`} title={entity.name}><TransformText uppercaseFirstLetter text={entity.name}/></h3>
 								{
 									showAsProducts ?
-									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} /></div>
+									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} tag={tag} /></div>
 									: <p className="text-base leading-relaxed text-textColor-500 truncate-3-lines"><TransformText uppercaseFirstLetter text={entity.description}/></p>
 								}
 							</div>
@@ -83,7 +83,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 								<h3 className={`text-lg font-medium ${inverseClass ? 'text-primary-500' : 'text-secondary-500'} title-font truncate-2-lines`} title={entity.name}><TransformText uppercaseFirstLetter text={entity.name}/></h3>
 								{
 									showAsProducts ?
-									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} /></div>
+									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} tag={tag} /></div>
 									: <p className="text-base leading-relaxed text-textColor-500 truncate-3-lines"><TransformText uppercaseFirstLetter text={entity.description}/></p>
 								}
 							</div>
@@ -101,7 +101,7 @@ const EntitiesList = ({entities, relativePath, inverseClass, showAsProducts, num
 								<h3 className={`text-lg font-medium ${inverseClass ? 'text-primary-500' : 'text-secondary-500'} title-font truncate-2-lines`} title={entity.name}><TransformText uppercaseFirstLetter text={entity.name}/></h3>
 								{
 									showAsProducts ?
-									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} /></div>
+									<div className="mt-2"><ProductActionPrice buttonText="Más info" hideAmazonRatings hideAmazonRate product={entity} tag={tag} /></div>
 									: <p className="text-base leading-relaxed text-textColor-500 truncate-3-lines"><TransformText uppercaseFirstLetter text={entity.description}/></p>
 								}
 							</div>

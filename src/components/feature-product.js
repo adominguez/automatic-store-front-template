@@ -64,7 +64,7 @@ const FeatureProduct = ({ product, rowReverse, relativePath, useAction, tag }) =
 								}
 							</ul>
 					}
-					<ProductActionPrice hideAmazonRatings hideAmazonRate product={product} relativePath={relativePath} useAction={useAction} />
+					<ProductActionPrice hideAmazonRatings hideAmazonRate product={product} relativePath={relativePath} useAction={useAction} tag={tag} />
 				</div>
 				<div className="flex-col items-center mt-4 principal-container lg:w-1/2 lg:mt-0">
 					{
