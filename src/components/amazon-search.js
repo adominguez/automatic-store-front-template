@@ -39,7 +39,7 @@ const AmazonSearch = ({keyword, buttonText, amazonSearchText, brands, showBrands
     }
 
     return (
-        <div className="flex-col self-center w-full p-4 text-center text-white centered-flex bg-primary-500 md:w-amazonValue">
+        <div className="flex-col self-center w-full p-4 text-center text-white centered-flex bg-secondary-500 md:w-amazonValue">
             {
                 amazonSearchText ?
                 <p>{amazonSearchText}</p>
@@ -61,7 +61,7 @@ const AmazonSearch = ({keyword, buttonText, amazonSearchText, brands, showBrands
             <label htmlFor="amount">Encuentra los mejores productos</label>
             <input type="text" id="amount" name="amount" readOnly className="w-full mt-2 mb-5 text-2xl font-bold text-center text-white bg-transparent border-0" disabled />
             <div id="slider-range" className="w-full slider-range" />
-            <button className="p-4 mx-auto mt-5 text-2xl text-white rounded-md cursor-pointer bg-secondary-500 hover:bg-secondary-700 focus:bg-secondary-700" onClick={goToAmazon}>{buttonText}</button>
+            <button className="p-4 mx-auto mt-5 text-2xl text-white rounded-md cursor-pointer bg-primary-500 hover:bg-primary-700 focus:bg-primary-700" onClick={goToAmazon}>{buttonText}</button>
         </div>
 )}
 
