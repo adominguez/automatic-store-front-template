@@ -3,6 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby";
+import '../css/index.css';
 
 const getImage = () => {
   const randomNumber = Math.floor(Math.random() * 5);

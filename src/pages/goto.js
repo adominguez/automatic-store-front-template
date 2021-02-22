@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TextBlock from "../components/text-block";
+import '../css/index.css';
 
 const Goto = ({location}) => {
     const [urlToRedirect, setUrlToRedirect] = useState(null);
