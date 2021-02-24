@@ -49,7 +49,7 @@ const Layout = ({ children, cookies }) => {
           <SearchInput />
         </div>
         <section className={`principal-container`}>
-          <div className="w-full md:w-templateValue">
+          <div className="flex flex-col w-full md:w-templateValue">
             {children}
           </div>
         </section>
