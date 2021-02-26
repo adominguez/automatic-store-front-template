@@ -68,6 +68,15 @@ const HomePage = ({categories, products = [], interlinking, productsToCompare, b
 						</div>
 					</>
 			}
+			{
+				content.customText && content.customText.length ?
+					content.customText.map(item => (
+						<div className="mb-12">
+							<TextBlock heading={item.title} text={item.content} headingSize={2} />
+						</div>
+					))
+				: null
+			}
 			<div className="mb-12">
 				<TextBlock heading={content.whereBuy.title} text={content.whereBuy.content} headingSize={2}  image={calculateImage()} />
 			</div>

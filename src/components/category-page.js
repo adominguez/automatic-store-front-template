@@ -55,6 +55,15 @@ const CategoryPage = ({content, products = [], categories, id, productsToCompare
 					</>
 			}
 			{
+				content.customText && content.customText.length ?
+					content.customText.map(item => (
+						<div className="mb-12">
+							<TextBlock heading={item.title} text={item.content} headingSize={2} />
+						</div>
+					))
+				: null
+			}
+			{
 				!!bestProducts.length &&
 					<>
 						{featureProducts.title && featureProducts.content &&
